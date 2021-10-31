@@ -1,0 +1,16 @@
+resolver: lts-18.14
+
+require-stack-version: ">=2.7"
+
+packages:
+- .
+
+extra-deps:
+
+extra-include-dirs:
+extra-lib-dirs:
+
+allow-different-user: true
+
+allow-newer: true
+
