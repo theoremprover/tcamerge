@@ -4,7 +4,6 @@
 
 module Main where
 
---import Text.XML.HaXml
 import Text.XML.HaXml.XmlContent
 
 import Extsubset
