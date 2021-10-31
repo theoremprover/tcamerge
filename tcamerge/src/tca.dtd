@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--DTD erstellt mit XMLSpy v2013 sp1 (x64) (http://www.altova.com)-->
+<!ELEMENT xmi:XMI ((tcm:ToolChain, history:History))>
+<!ATTLIST xmi:XMI
+	xmi:version CDATA #REQUIRED
+	xmlns:history CDATA #REQUIRED
+	xmlns:tcm CDATA #REQUIRED
+	xmlns:xmi CDATA #REQUIRED
+	xmlns:xsi CDATA #REQUIRED
+>
+<!ELEMENT tcm:ToolChain ((Reviews+, Artifacts+, Tools+, DefaultErrorAttributes))>
+<!ATTLIST tcm:ToolChain
+	Comment CDATA #REQUIRED
+	Description CDATA #REQUIRED
+	ID CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	RiskLevel CDATA #REQUIRED
+	UseAssumptions CDATA #REQUIRED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT history:History EMPTY>
+<!ATTLIST history:History
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT UseCases ((Parts+ | Reviews+ | (Errors+, (Restrictions+ | Reviews+ | (Checks+, (Parts | Restrictions+ | Reviews+)?))?) | (Checks+, Reviews*))?)>
+<!ATTLIST UseCases
+	Attributes CDATA #IMPLIED
+	Comment CDATA #IMPLIED
+	Deactivated CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	ID CDATA #IMPLIED
+	Impact CDATA #IMPLIED
+	Inputs CDATA #IMPLIED
+	InputsOutputs CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	KnownBugs CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	Outputs CDATA #IMPLIED
+	RequiredFeatures CDATA #IMPLIED
+	TestRuns CDATA #IMPLIED
+	Tests CDATA #IMPLIED
+	UseCases CDATA #IMPLIED
+	Virtual CDATA #IMPLIED
+	testResults CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+	xsi:type CDATA #IMPLIED
+>
+<!ELEMENT Tools ((Identifications | Reviews | (UseCases+, ((Tests, (TestRuns | (Identifications, KnownBugs))) | (Qualifications, Identifications, (KnownBugs*, Reviews+)?) | (Identifications, (AnomalousOpConds+ | KnownBugs | (Reviews+, LibraryQualifications?))?))?))?)>
+<!ATTLIST Tools
+	Classification CDATA #IMPLIED
+	Comment CDATA #IMPLIED
+	Deactivated CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	ID CDATA #IMPLIED
+	Impact CDATA #IMPLIED
+	Inputs CDATA #IMPLIED
+	InputsOutputs CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	KnownBugDate CDATA #IMPLIED
+	KnownBugManagement CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	Outputs CDATA #IMPLIED
+	ToolOwner CDATA #IMPLIED
+	ToolProvider CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+	xsi:type CDATA #IMPLIED
+>
+<!ELEMENT Tests ((SubTests*))>
+<!ATTLIST Tests
+	Description CDATA #IMPLIED
+	Errors CDATA #IMPLIED
+	HasBoundaryTest CDATA #IMPLIED
+	HasCodeCoverage CDATA #IMPLIED
+	HasEquivalenceTest CDATA #IMPLIED
+	HasErrorGuessingTest CDATA #IMPLIED
+	HasNegativeTest CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	TestResults CDATA #IMPLIED
+	UseCases CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT TestRuns ((TestResults))>
+<!ATTLIST TestRuns
+	ExecutionResult CDATA #REQUIRED
+	Name CDATA #REQUIRED
+	UseCases CDATA #REQUIRED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT TestResults EMPTY>
+<!ATTLIST TestResults
+	ExecutionResult CDATA #REQUIRED
+	Name CDATA #IMPLIED
+	Test CDATA #IMPLIED
+	useCases CDATA #IMPLIED
+	xmi:id CDATA #IMPLIED
+>
+<!ELEMENT SubTests ((SubTests*))>
+<!ATTLIST SubTests
+	Description CDATA #IMPLIED
+	Errors CDATA #IMPLIED
+	KnownBugs CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	NumberOfUnitTests CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Reviews EMPTY>
+<!ATTLIST Reviews
+	Comment CDATA #IMPLIED
+	Date CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	Result CDATA #IMPLIED
+	Reviewer CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Restrictions ((Reviews?))>
+<!ATTLIST Restrictions
+	AvoidedError CDATA #IMPLIED
+	AvoidedKnownBugs CDATA #IMPLIED
+	Category (TOOL_BASED | MANUAL | IMPLICIT) #IMPLIED
+	Comment CDATA #IMPLIED
+	Description CDATA #REQUIRED
+	InternalReference CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	RestrictionProbability (MEDIUM | HIGH) #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Qualifications ((Reviews*))>
+<!ATTLIST Qualifications
+	Comment CDATA #IMPLIED
+	Deactivated CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	Identifications CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Method CDATA #IMPLIED
+	Name CDATA #IMPLIED
+	ToolQualificationMethod (VALIDAS_QKIT | OTHER_METHOD_FOR_ASIL_D | CONFIDENCE_FROM_USE) #IMPLIED
+	xmi:id CDATA #REQUIRED
+	xsi:type CDATA #IMPLIED
+>
+<!ELEMENT Parts ((Restrictions | (Errors*, Checks))?)>
+<!ATTLIST Parts
+	Comment CDATA #IMPLIED
+	Description CDATA #REQUIRED
+	ID CDATA #IMPLIED
+	Inputs CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	Outputs CDATA #IMPLIED
+	RequiredFeatures CDATA #IMPLIED
+	UseCases CDATA #IMPLIED
+	Virtual CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+	xsi:type CDATA #IMPLIED
+>
+<!ELEMENT LibraryQualifications EMPTY>
+<!ATTLIST LibraryQualifications
+	Description CDATA #REQUIRED
+	Name CDATA #REQUIRED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT KnownBugs EMPTY>
+<!ATTLIST KnownBugs
+	AvoidedBy CDATA #IMPLIED
+	Comment CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	Errors CDATA #IMPLIED
+	Fixed CDATA #IMPLIED
+	Identifications CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	ObservableVerdict CDATA #IMPLIED
+	Tests CDATA #IMPLIED
+	UseCases CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Identifications EMPTY>
+<!ATTLIST Identifications
+	Comment CDATA #IMPLIED
+	Configuration CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	Documentation CDATA #IMPLIED
+	Environment CDATA #IMPLIED
+	ID CDATA #IMPLIED
+	Installation CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	KnownBugList CDATA #IMPLIED
+	KnownBugs CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #IMPLIED
+	Qualification CDATA #IMPLIED
+	Release CDATA #IMPLIED
+	Version CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Errors ((Reviews*))>
+<!ATTLIST Errors
+	Artifacts CDATA #IMPLIED
+	AvoidedBy CDATA #IMPLIED
+	Comment CDATA #IMPLIED
+	Deactivated CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	DiscoveredBy CDATA #IMPLIED
+	ID CDATA #IMPLIED
+	Impact CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	IsSubsumedFrom CDATA #IMPLIED
+	KnownBugs CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #IMPLIED
+	Subsumes CDATA #IMPLIED
+	Tests CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT DefaultErrorAttributes ((Attributes+))>
+<!ATTLIST DefaultErrorAttributes
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Checks ((Reviews*))>
+<!ATTLIST Checks
+	Artifacts CDATA #IMPLIED
+	Category (TOOL_BASED | REDUNDANT | MANUAL | IMPLICIT) #IMPLIED
+	Comment CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	DetectedError CDATA #IMPLIED
+	DetectionProbability (MEDIUM | HIGH) #IMPLIED
+	Effort (NONE | MEDIUM | LOW | HIGH) #IMPLIED
+	ID CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT Attributes ((Errors*))>
+<!ATTLIST Attributes
+	Description CDATA #REQUIRED
+	HasBoundaryTest CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	UseCases CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+	xsi:type (tcm:ToolAttribute | tcm:ArtifactAttribute) #IMPLIED
+>
+<!ELEMENT Artifacts ((Reviews?))>
+<!ATTLIST Artifacts
+	Comment CDATA #IMPLIED
+	CreatedBy CDATA #IMPLIED
+	CreatedByTool CDATA #IMPLIED
+	Deactivated CDATA #IMPLIED
+	Description CDATA #IMPLIED
+	Format CDATA #IMPLIED
+	ID CDATA #IMPLIED
+	InternalReference CDATA #IMPLIED
+	IsA CDATA #IMPLIED
+	IsAssumption CDATA #IMPLIED
+	IsPartOfProduct CDATA #IMPLIED
+	LongDescription CDATA #IMPLIED
+	ModifiedBy CDATA #IMPLIED
+	ModifiedByTool CDATA #IMPLIED
+	Name CDATA #IMPLIED
+	Occurrences CDATA #IMPLIED
+	UsedBy CDATA #IMPLIED
+	UsedByTool CDATA #IMPLIED
+	xmi:id CDATA #REQUIRED
+>
+<!ELEMENT AnomalousOpConds EMPTY>
+<!ATTLIST AnomalousOpConds
+	Comment CDATA #IMPLIED
+	Name CDATA #REQUIRED
+	xmi:id CDATA #REQUIRED
+>
