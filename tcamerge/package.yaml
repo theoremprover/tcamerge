@@ -14,6 +14,7 @@ copyright:           2021 Robert Reitmeier
 dependencies:
   - base >= 4.7 && < 5
   - HaXml
+  - pretty
 
 executables:
   tcamerge-exe:
@@ -21,4 +22,3 @@ executables:
     main:             Main.hs
     ghc-options:
     - -threaded
-
