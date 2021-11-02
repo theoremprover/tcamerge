@@ -6,28 +6,29 @@ module Main where
 import Text.XML.HaXml.XmlContent
 import Text.XML.HaXml.Pretty
 import Text.PrettyPrint
-import Text.XML.HaXml.Posn
 import Text.XML.HaXml.Parse
+import Text.XML.HaXml.Posn
+import Text.XML.HaXml.Schema.Schema
 import Data.List
 
-import Extsubset
+import TCAMetamodel
 
 
-type TCAFile = Xmi'XMI
-
-readTcaFile :: FilePath -> IO TCAFile
-readTcaFile filepath = fReadXml filepath
-
-readElementTree :: FilePath -> IO (Element Posn,Element i -> Document i)
-readElementTree filepath = do
+readToolChain :: FilePath -> IO (ToolChain,[Content i] -> Document i)
+readToolChain filepath = do
 	content <- readFile filepath
-	let Document prolog symtab element misc = xmlParse filepath content
-	return (element,\ e -> Document prolog symtab e misc)
+	let Document prolog symtab root@(Elem qname attrs _) misc = xmlParse filepath content
+	let Right toolchain = fst $ runParser elementToolChain [CElem root noPos]
+	return (toolchain,\ e -> Document prolog symtab (Elem qname attrs e) misc)
+
+writeToolChain :: FilePath -> ([Content i] -> Document i) -> ToolChain -> IO ()
+writeToolChain filepath embed_f toolchain = do
+	writeFile filepath $ render $ Text.XML.HaXml.Pretty.document $ embed_f (schemaTypeToXML "toolchain" toolchain)
 
 main :: IO ()
 main = do
-	(base,embedbase) <- readElementTree "Branch.tca"
-	(mod1,embedmod1) <- readElementTree "newtool1.tca"
+	(base,embedbase) <- readToolChain "Branch.tca"
+	(mod1,embedmod1) <- readToolChain "newtool1.tca"
 	let [mergedelement] = mergeLists sameElement mergeElements [base] [mod1]
 	writeFile ("merged.tca") $ render $ Text.XML.HaXml.Pretty.document $ embedmod1 mergedelement
 
