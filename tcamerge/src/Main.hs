@@ -14,14 +14,14 @@ import Data.List
 import TCAMetamodel
 
 
-readToolChain :: FilePath -> IO (ToolChain,[Content i] -> Document i)
+readToolChain :: FilePath -> IO (ToolChain,[Content ()] -> Document ())
 readToolChain filepath = do
 	content <- readFile filepath
 	let Document prolog symtab root@(Elem qname attrs _) misc = xmlParse filepath content
 	let Right toolchain = fst $ runParser elementToolChain [CElem root noPos]
 	return (toolchain,\ e -> Document prolog symtab (Elem qname attrs e) misc)
 
-writeToolChain :: FilePath -> ([Content i] -> Document i) -> ToolChain -> IO ()
+writeToolChain :: FilePath -> ([Content ()] -> Document ()) -> ToolChain -> IO ()
 writeToolChain filepath embed_f toolchain = do
 	writeFile filepath $ render $ Text.XML.HaXml.Pretty.document $ embed_f (schemaTypeToXML "toolchain" toolchain)
 
