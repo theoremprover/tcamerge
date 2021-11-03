@@ -12,7 +12,7 @@ import Text.XML.HaXml.Schema.Schema
 import Data.List
 
 import TCAMetamodel
-
+import DataTree
 
 readToolChain :: FilePath -> IO (ToolChain,[Content ()] -> Document ())
 readToolChain filepath = do
@@ -28,6 +28,8 @@ writeToolChain filepath embed_f toolchain = do
 main :: IO ()
 main = do
 	(base,embedbase) <- readToolChain "Branch.tca"
+	writeFile "Branch.tca.html" $ genericToHTMLString base
+{-
 	(mod1,embedmod1) <- readToolChain "newtool1.tca"
 	let [mergedelement] = mergeLists sameElement mergeElements [base] [mod1]
 	writeFile ("merged.tca") $ render $ Text.XML.HaXml.Pretty.document $ embedmod1 mergedelement
@@ -54,4 +56,4 @@ mergeLists same_elem merge_elem l1@(elem1:rest1) l2@(elem2:rest2) = case break (
 		(_,rest) -> mergeLists same_elem merge_elem rest l2
 	(insertion,rest) -> insertion ++ mergeLists same_elem merge_elem l1 rest
 
-	
+-}

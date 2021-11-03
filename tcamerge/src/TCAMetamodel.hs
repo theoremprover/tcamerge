@@ -1,10 +1,12 @@
-
-{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies #-}
+{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, DeriveGeneric #-}
 {-# OPTIONS_GHC -fno-warn-duplicate-exports #-}
+
 module TCAMetamodel
   ( module TCAMetamodel
   ) where
- 
+
+import qualified GHC.Generics as GHCG
+
 import Text.XML.HaXml.Schema.Schema (SchemaType(..),SimpleType(..),Extension(..),Restricts(..))
 import Text.XML.HaXml.Schema.Schema as Schema
 import Text.XML.HaXml.OneOfN
@@ -313,7 +315,7 @@ data IIdentifiable
         | IIdentifiable_Costs Costs
         | IIdentifiable_IToolChainElement IToolChainElement
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IIdentifiable where
     parseSchemaType s = do
         (fmap IIdentifiable_ProgressTrackingState $ parseSchemaType s)
@@ -374,25 +376,25 @@ instance SchemaType IIdentifiable where
     schemaTypeToXML _s (IIdentifiable_IToolChainElement x) = schemaTypeToXML "iToolChainElement" x
  
 --  (There are no subtypes defined for this abstract type.)
-data IAssumable = IAssumable deriving (Eq,Show)
+data IAssumable = IAssumable deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IAssumable where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IAssumable:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
  
 --  (There are no subtypes defined for this abstract type.)
-data IVirtualizable = IVirtualizable deriving (Eq,Show)
+data IVirtualizable = IVirtualizable deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IVirtualizable where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IVirtualizable:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
  
 --  (There are no subtypes defined for this abstract type.)
-data IDeactivatable = IDeactivatable deriving (Eq,Show)
+data IDeactivatable = IDeactivatable deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IDeactivatable where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IDeactivatable:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
  
 --  (There are no subtypes defined for this abstract type.)
-data IImpactable = IImpactable deriving (Eq,Show)
+data IImpactable = IImpactable deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IImpactable where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IImpactable:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
@@ -407,7 +409,7 @@ data IToolChainElement
         | IToolChainElement_UseCase UseCase
         | IToolChainElement_Tool Tool
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IToolChainElement where
     parseSchemaType s = do
         (fmap IToolChainElement_IBug $ parseSchemaType s)
@@ -477,7 +479,7 @@ data Tool = Tool
         , tool_anomalousOpConds :: [AnomalousOpCond]
         , tool_parameters :: [Parameter]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Tool where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -609,7 +611,7 @@ data UseCase = UseCase
         , useCase_reviews :: [Review]
         , useCase_parameters :: [Parameter]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType UseCase where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -728,7 +730,7 @@ data Artifact = Artifact
         , artifact_internalReference :: Maybe Ecore.EString
         , artifact_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Artifact where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -801,7 +803,7 @@ data Error = Error
         , error_anomalousOpConds :: Maybe Xsd.XsdString
         , error_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Error where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -855,7 +857,7 @@ data ConfidenceNeed
     | ConfidenceNeed_Criteria2
     | ConfidenceNeed_Criteria3
     | ConfidenceNeed_None
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType ConfidenceNeed where
     parseSchemaType s = do
         e <- element [s]
@@ -906,7 +908,7 @@ data Check = Check
         , check_errors :: [Error]
         , check_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Check where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -963,7 +965,7 @@ data Probability
     = Probability_LOW
     | Probability_MEDIUM
     | Probability_HIGH
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType Probability where
     parseSchemaType s = do
         e <- element [s]
@@ -1032,7 +1034,7 @@ data ToolChain = ToolChain
         , toolChain_standardMethods :: [StandardMethods]
         , toolChain_progressTrackingStates :: [ProgressTrackingState]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ToolChain where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1174,7 +1176,7 @@ data QualificationMethod
     | QualificationMethod_FAILURE_MITIGATION
     | QualificationMethod_VALIDAS_QKIT
     | QualificationMethod_VALIDAS_CKIT
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType QualificationMethod where
     parseSchemaType s = do
         e <- element [s]
@@ -1225,7 +1227,7 @@ data ASIL
     | ASIL_B
     | ASIL_C
     | ASIL_D
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType ASIL where
     parseSchemaType s = do
         e <- element [s]
@@ -1264,7 +1266,7 @@ data Restriction = Restriction
         , restriction_errors :: [Error]
         , restriction_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Restriction where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1321,7 +1323,7 @@ data Costs
         = Costs_UseCaseCosts UseCaseCosts
         | Costs_ToolCosts ToolCosts
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Costs where
     parseSchemaType s = do
         (fmap Costs_UseCaseCosts $ parseSchemaType s)
@@ -1353,7 +1355,7 @@ data ToolCosts = ToolCosts
         , toolCosts_unit :: Maybe CostUnit
         , toolCosts_tool :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ToolCosts where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1418,7 +1420,7 @@ data UseCaseCosts = UseCaseCosts
         , useCaseCosts_unit :: Maybe CostUnit
         , useCaseCosts_useCase :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType UseCaseCosts where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1484,7 +1486,7 @@ data Qualification = Qualification
         , qualification_method :: Maybe QualificationMethod
         , qualification_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Qualification where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1585,7 +1587,7 @@ data Feature = Feature
         , feature_reviews :: [Review]
         , feature_parameters :: [Parameter]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Feature where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1706,7 +1708,7 @@ data InferredRestriction = InferredRestriction
         { inferredRestriction_inferredOccurrences :: Maybe Xsd.XsdString
         , inferredRestriction_sourceOccurrence :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType InferredRestriction where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1725,7 +1727,7 @@ data InferredError = InferredError
         { inferredError_inferredOccurrences :: Maybe Xsd.XsdString
         , inferredError_sourceOccurrence :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType InferredError where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1744,7 +1746,7 @@ data InferredCheck = InferredCheck
         { inferredCheck_inferredOccurrences :: Maybe Xsd.XsdString
         , inferredCheck_sourceOccurrence :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType InferredCheck where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1763,7 +1765,7 @@ data Attribute
         = Attribute_ArtifactAttribute ArtifactAttribute
         | Attribute_ToolAttribute ToolAttribute
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Attribute where
     parseSchemaType s = do
         (fmap Attribute_ArtifactAttribute $ parseSchemaType s)
@@ -1781,7 +1783,7 @@ data DefaultErrorAttributes = DefaultErrorAttributes
         { defaultErrorAttributes_toolChain :: Maybe Xsd.AnyURI
         , defaultErrorAttributes_attributes :: [Attribute]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType DefaultErrorAttributes where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1811,7 +1813,7 @@ data ToolAttribute = ToolAttribute
         , toolAttribute_tests :: [Test]
         , toolAttribute_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ToolAttribute where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1872,7 +1874,7 @@ data ArtifactAttribute = ArtifactAttribute
         , artifactAttribute_tests :: [Test]
         , artifactAttribute_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ArtifactAttribute where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1919,7 +1921,7 @@ data ErrorOccurrence
         = ErrorOccurrence_InferredError InferredError
         | ErrorOccurrence_Error Error
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ErrorOccurrence where
     parseSchemaType s = do
         (fmap ErrorOccurrence_InferredError $ parseSchemaType s)
@@ -1934,7 +1936,7 @@ instance SchemaType ErrorOccurrence where
 data CheckOccurrence
         = CheckOccurrence_InferredCheck InferredCheck
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType CheckOccurrence where
     parseSchemaType s = do
         (fmap CheckOccurrence_InferredCheck $ parseSchemaType s)
@@ -1946,7 +1948,7 @@ instance SchemaType CheckOccurrence where
 data RestrictionOccurrence
         = RestrictionOccurrence_InferredRestriction InferredRestriction
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType RestrictionOccurrence where
     parseSchemaType s = do
         (fmap RestrictionOccurrence_InferredRestriction $ parseSchemaType s)
@@ -1982,7 +1984,7 @@ data Variant = Variant
         , variant_parameters :: Maybe Xsd.XsdString
         , variant_enumValues :: Maybe Xsd.XsdString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Variant where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2071,7 +2073,7 @@ data ORVariant = ORVariant
         , oRVariant_enumValues :: Maybe Xsd.XsdString
         , oRVariant_variants :: Xsd.XsdString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ORVariant where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2167,7 +2169,7 @@ data OneOfVariant = OneOfVariant
         , oneOfVariant_enumValues :: Maybe Xsd.XsdString
         , oneOfVariant_variants :: Xsd.XsdString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType OneOfVariant where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2263,7 +2265,7 @@ data ANDVariant = ANDVariant
         , aNDVariant_enumValues :: Maybe Xsd.XsdString
         , aNDVariant_variants :: Xsd.XsdString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ANDVariant where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2363,7 +2365,7 @@ data Test = Test
         , test_subTests :: [Test]
         , test_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Test where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2443,7 +2445,7 @@ data CostType
     | CostType_COSTS_PER_EXECUTION
     | CostType_COSTS_PER_SETUP
     | CostType_COSTS_PER_YEAR
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType CostType where
     parseSchemaType s = do
         e <- element [s]
@@ -2465,7 +2467,7 @@ data CostUnit
     = CostUnit_MONEY
     | CostUnit_HUMAN_TIME
     | CostUnit_COMPUTER_TIME
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType CostUnit where
     parseSchemaType s = do
         e <- element [s]
@@ -2506,7 +2508,7 @@ data Identification = Identification
         , identification_nextIdentification :: Maybe Xsd.AnyURI
         , identification_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Identification where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2585,7 +2587,7 @@ data KnownBug = KnownBug
         , knownBug_observableTestNamePattern :: Maybe Ecore.EString
         , knownBug_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType KnownBug where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2652,7 +2654,7 @@ data QualificationProject = QualificationProject
         , qualificationProject_qualificationSteps :: [QualificationStep]
         , qualificationProject_qualificationArtifacts :: [QualificationArtifact]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType QualificationProject where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2704,7 +2706,7 @@ data QualificationRole = QualificationRole
         , qualificationRole_variant :: Maybe Xsd.XsdString
         , qualificationRole_qualificationArtifacts :: Maybe Xsd.XsdString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType QualificationRole where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2759,7 +2761,7 @@ data QualificationStep = QualificationStep
         , qualificationStep_automated :: Maybe Ecore.EBoolean
         , qualificationStep_subQualificationSteps :: [QualificationStep]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType QualificationStep where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2825,7 +2827,7 @@ data QualificationArtifact = QualificationArtifact
         , qualificationArtifact_internalReference :: Maybe Ecore.EString
         , qualificationArtifact_automated :: Maybe Ecore.EBoolean
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType QualificationArtifact where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2869,7 +2871,7 @@ data SafetyStandard
     | SafetyStandard_DO178C
     | SafetyStandard_DO278A
     | SafetyStandard_DO330
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType SafetyStandard where
     parseSchemaType s = do
         e <- element [s]
@@ -2906,7 +2908,7 @@ data Method = Method
         , method_kind :: Maybe MethodKind
         , method_reference :: Maybe Ecore.EString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Method where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -2966,7 +2968,7 @@ data RiskLevel
     | RiskLevel_SLB
     | RiskLevel_SLC
     | RiskLevel_SLD
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType RiskLevel where
     parseSchemaType s = do
         e <- element [s]
@@ -3025,7 +3027,7 @@ data StandardMethods = StandardMethods
         , standardMethods_safetyStandard :: Maybe SafetyStandard
         , standardMethods_methods :: [Method]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType StandardMethods where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3044,7 +3046,7 @@ data ConfidenceLevel
     = ConfidenceLevel_L1
     | ConfidenceLevel_L2
     | ConfidenceLevel_L3
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType ConfidenceLevel where
     parseSchemaType s = do
         e <- element [s]
@@ -3065,7 +3067,7 @@ data MethodKind
     | MethodKind_Analysis
     | MethodKind_Verification
     | MethodKind_Other
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType MethodKind where
     parseSchemaType s = do
         e <- element [s]
@@ -3106,7 +3108,7 @@ data Review = Review
         , review_attribute :: Maybe Xsd.AnyURI
         , review_identification :: Maybe Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Review where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3165,7 +3167,7 @@ data ReviewResult
     | ReviewResult_PASS
     | ReviewResult_PASS_BEFORE_MODIFICATION
     | ReviewResult_FAIL_BEFORE_MODIFICATION
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType ReviewResult where
     parseSchemaType s = do
         e <- element [s]
@@ -3186,7 +3188,7 @@ instance SimpleType ReviewResult where
     simpleTypeText ReviewResult_FAIL_BEFORE_MODIFICATION = "FAIL_BEFORE_MODIFICATION"
  
 --  (There are no subtypes defined for this abstract type.)
-data IBug = IBug deriving (Eq,Show)
+data IBug = IBug deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IBug where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IBug:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
@@ -3194,7 +3196,7 @@ instance Extension IBug IToolChainElement where
     supertype v = IToolChainElement_IBug v
  
 --  (There are no subtypes defined for this abstract type.)
-data IDerivable = IDerivable deriving (Eq,Show)
+data IDerivable = IDerivable deriving (GHCG.Generic,Eq,Show)
 instance SchemaType IDerivable where
     parseSchemaType s = fail "Parse failed when expecting an extension type of IDerivable:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
@@ -3219,7 +3221,7 @@ data TestRun = TestRun
         , testRun_useCases :: Maybe Xsd.XsdString
         , testRun_testResults :: [TestResult]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType TestRun where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3273,7 +3275,7 @@ data Verdict
     | Verdict_ERROR
     | Verdict_SKIPPED
     | Verdict_ANALYZED
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType Verdict where
     parseSchemaType s = do
         e <- element [s]
@@ -3314,7 +3316,7 @@ data TestResult = TestResult
         , testResult_useCases :: Maybe Xsd.XsdString
         , testResult_subTestResults :: [TestResult]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType TestResult where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3399,7 +3401,7 @@ data Library = Library
         , library_parameters :: [Parameter]
         , library_libraryQualifications :: [LibraryQualification]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Library where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3502,7 +3504,7 @@ data Category
     | Category_TOOL_BASED
     | Category_IMPLICIT
     | Category_REDUNDANT
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType Category where
     parseSchemaType s = do
         e <- element [s]
@@ -3528,7 +3530,7 @@ data Effort
     | Effort_LOW
     | Effort_MEDIUM
     | Effort_HIGH
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType Effort where
     parseSchemaType s = do
         e <- element [s]
@@ -3565,7 +3567,7 @@ data AnomalousOpCond = AnomalousOpCond
         , anomalousOpCond_expectedBehaviour :: Maybe Ecore.EString
         , anomalousOpCond_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType AnomalousOpCond where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3611,7 +3613,7 @@ data QualificationResult
     | QualificationResult_DISQUALIFIED
     | QualificationResult_SUCCESSFULLY_QUALIFIED
     | QualificationResult_PREQUALIFIED
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType QualificationResult where
     parseSchemaType s = do
         e <- element [s]
@@ -3657,7 +3659,7 @@ data NOTVariant = NOTVariant
         , nOTVariant_enumValues :: Maybe Xsd.XsdString
         , nOTVariant_variant :: Xsd.AnyURI
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType NOTVariant where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3735,7 +3737,7 @@ data ParameterType
     | ParameterType_ENUMERATION
     | ParameterType_BEFORE_TEST_HOOK_EXE
     | ParameterType_AFTER_TEST_HOOK_EXE
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType ParameterType where
     parseSchemaType s = do
         e <- element [s]
@@ -3784,7 +3786,7 @@ data Parameter = Parameter
         , parameter_enumValues :: [EnumValue]
         , parameter_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType Parameter where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3843,7 +3845,7 @@ data EnumValue = EnumValue
         , enumValue_variant :: Maybe Xsd.XsdString
         , enumValue_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EnumValue where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3890,7 +3892,7 @@ data ToolQualification = ToolQualification
         , toolQualification_toolQualificationMethod :: Maybe QualificationMethod
         , toolQualification_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ToolQualification where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -3968,7 +3970,7 @@ data LibraryQualification = LibraryQualification
         , libraryQualification_library :: Maybe Xsd.AnyURI
         , libraryQualification_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType LibraryQualification where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -4037,7 +4039,7 @@ data LibraryQualificationMethod
     | LibraryQualificationMethod_STANDARD_COMPLIANT
     | LibraryQualificationMethod_CERTIFICATION
     | LibraryQualificationMethod_VALIDAS_QKIT
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType LibraryQualificationMethod where
     parseSchemaType s = do
         e <- element [s]
@@ -4070,7 +4072,7 @@ data LibraryClassification
     | LibraryClassification_MODIFIED
     | LibraryClassification_UNCHANGED
     | LibraryClassification_UPDATED
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType LibraryClassification where
     parseSchemaType s = do
         e <- element [s]
@@ -4095,7 +4097,7 @@ data CodeCoverageMetric
     | CodeCoverageMetric_CONDITION_COVERAGE
     | CodeCoverageMetric_MCDC_COVERAGE
     | CodeCoverageMetric_FUNCTION_COVERAGE
-    deriving (Eq,Show,Enum)
+    deriving (GHCG.Generic,Eq,Show,Enum)
 instance SchemaType CodeCoverageMetric where
     parseSchemaType s = do
         e <- element [s]
@@ -4127,7 +4129,7 @@ data ProgressTrackingState = ProgressTrackingState
         , progressTrackingState_associatedFeatures :: Maybe Xsd.XsdString
         , progressTrackingState_completionPercentage :: Ecore.EDouble
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ProgressTrackingState where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -4176,7 +4178,7 @@ data CommandLineParameter = CommandLineParameter
         , commandLineParameter_enumValues :: [EnumValue]
         , commandLineParameter_reviews :: [Review]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType CommandLineParameter where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -4233,7 +4235,7 @@ instance Extension CommandLineParameter IIdentifiable where
               
  
 --  (There are no subtypes defined for this abstract type.)
-data WithNameAndPath = WithNameAndPath deriving (Eq,Show)
+data WithNameAndPath = WithNameAndPath deriving (GHCG.Generic,Eq,Show,GHCG.Generic)
 instance SchemaType WithNameAndPath where
     parseSchemaType s = fail "Parse failed when expecting an extension type of WithNameAndPath:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
