@@ -1,9 +1,11 @@
-{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies #-}
+{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, DeriveGeneric #-}
 {-# OPTIONS_GHC -fno-warn-duplicate-exports #-}
 module Ecore
   ( module Ecore
   ) where
  
+import qualified GHC.Generics as GHCG
+
 import Text.XML.HaXml.Schema.Schema (SchemaType(..),SimpleType(..),Extension(..),Restricts(..))
 import Text.XML.HaXml.Schema.Schema as Schema
 import Text.XML.HaXml.OneOfN
@@ -132,7 +134,7 @@ data EAttribute = EAttribute
         , eAttribute_eAnnotations :: [EAnnotation]
         , eAttribute_eGenericType :: Maybe EGenericType
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EAttribute where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -203,7 +205,7 @@ data EAnnotation = EAnnotation
         , eAnnotation_details :: [EStringToStringMapEntry]
         , eAnnotation_contents :: [AnyElement]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EAnnotation where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -249,7 +251,7 @@ data EClass = EClass
         , eClass_eStructuralFeatures :: [EStructuralFeature]
         , eClass_eGenericSuperTypes :: [EGenericType]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EClass where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -319,7 +321,7 @@ data EClassifier
         = EClassifier_EDataType EDataType
         | EClassifier_EClass EClass
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EClassifier where
     parseSchemaType s = do
         (fmap EClassifier_EDataType $ parseSchemaType s)
@@ -343,7 +345,7 @@ data EDataType = EDataType
         , eDataType_eAnnotations :: [EAnnotation]
         , eDataType_eTypeParameters :: [ETypeParameter]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EDataType where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -390,7 +392,7 @@ data EEnum = EEnum
         , eEnum_eTypeParameters :: [ETypeParameter]
         , eEnum_eLiterals :: [EEnumLiteral]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EEnum where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -442,7 +444,7 @@ data EEnumLiteral = EEnumLiteral
         , eEnumLiteral_literal :: Maybe EString
         , eEnumLiteral_eAnnotations :: [EAnnotation]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EEnumLiteral where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -471,7 +473,7 @@ data EFactory = EFactory
         { eFactory_ePackage :: Maybe Xsd.IDREF
         , eFactory_eAnnotations :: [EAnnotation]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EFactory where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -491,7 +493,7 @@ data EModelElement
         | EModelElement_EFactory EFactory
         | EModelElement_EAnnotation EAnnotation
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EModelElement where
     parseSchemaType s = do
         (fmap EModelElement_ENamedElement $ parseSchemaType s)
@@ -513,7 +515,7 @@ data ENamedElement
         | ENamedElement_EEnumLiteral EEnumLiteral
         | ENamedElement_EClassifier EClassifier
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ENamedElement where
     parseSchemaType s = do
         (fmap ENamedElement_ETypeParameter $ parseSchemaType s)
@@ -537,7 +539,7 @@ instance Extension ENamedElement EModelElement where
     supertype v = EModelElement_ENamedElement v
  
 data EObject = EObject
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EObject where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -562,7 +564,7 @@ data EOperation = EOperation
         , eOperation_eParameters :: [EParameter]
         , eOperation_eGenericExceptions :: [EGenericType]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EOperation where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -619,7 +621,7 @@ data EPackage = EPackage
         , ePackage_eClassifiers :: [EClassifier]
         , ePackage_eSubpackages :: [EPackage]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EPackage where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -660,7 +662,7 @@ data EParameter = EParameter
         , eParameter_eAnnotations :: [EAnnotation]
         , eParameter_eGenericType :: Maybe EGenericType
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EParameter where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -725,7 +727,7 @@ data EReference = EReference
         , eReference_eAnnotations :: [EAnnotation]
         , eReference_eGenericType :: Maybe EGenericType
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EReference where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -801,7 +803,7 @@ data EStructuralFeature
         = EStructuralFeature_EReference EReference
         | EStructuralFeature_EAttribute EAttribute
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EStructuralFeature where
     parseSchemaType s = do
         (fmap EStructuralFeature_EReference $ parseSchemaType s)
@@ -820,7 +822,7 @@ data ETypedElement
         | ETypedElement_EParameter EParameter
         | ETypedElement_EOperation EOperation
         
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ETypedElement where
     parseSchemaType s = do
         (fmap ETypedElement_EStructuralFeature $ parseSchemaType s)
@@ -837,7 +839,7 @@ instance SchemaType ETypedElement where
 instance Extension ETypedElement ENamedElement where
     supertype v = ENamedElement_ETypedElement v
  
-newtype EBigDecimal = EBigDecimal Xsd.Decimal deriving (Eq,Show)
+newtype EBigDecimal = EBigDecimal Xsd.Decimal deriving (GHCG.Generic,Eq,Show)
 instance Restricts EBigDecimal Xsd.Decimal where
     restricts (EBigDecimal x) = x
 instance SchemaType EBigDecimal where
@@ -852,7 +854,7 @@ instance SimpleType EBigDecimal where
     -- The restrictions are:
     simpleTypeText (EBigDecimal x) = simpleTypeText x
  
-newtype EBigInteger = EBigInteger Xsd.Integer deriving (Eq,Show)
+newtype EBigInteger = EBigInteger Xsd.Integer deriving (GHCG.Generic,Eq,Show)
 instance Restricts EBigInteger Xsd.Integer where
     restricts (EBigInteger x) = x
 instance SchemaType EBigInteger where
@@ -867,7 +869,7 @@ instance SimpleType EBigInteger where
     -- The restrictions are:
     simpleTypeText (EBigInteger x) = simpleTypeText x
  
-newtype EBoolean = EBoolean Xsd.XsdString deriving (Eq,Show)
+newtype EBoolean = EBoolean Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EBoolean Xsd.XsdString where
     restricts (EBoolean x) = x
 instance SchemaType EBoolean where
@@ -882,7 +884,7 @@ instance SimpleType EBoolean where
     -- The restrictions are:
     simpleTypeText (EBoolean x) = simpleTypeText x
  
-newtype EBooleanObject = EBooleanObject EBoolean deriving (Eq,Show)
+newtype EBooleanObject = EBooleanObject EBoolean deriving (GHCG.Generic,Eq,Show)
 instance Restricts EBooleanObject EBoolean where
     restricts (EBooleanObject x) = x
 instance SchemaType EBooleanObject where
@@ -897,7 +899,7 @@ instance SimpleType EBooleanObject where
     -- The restrictions are:
     simpleTypeText (EBooleanObject x) = simpleTypeText x
  
-newtype EByte = EByte Xsd.Byte deriving (Eq,Show)
+newtype EByte = EByte Xsd.Byte deriving (GHCG.Generic,Eq,Show)
 instance Restricts EByte Xsd.Byte where
     restricts (EByte x) = x
 instance SchemaType EByte where
@@ -912,7 +914,7 @@ instance SimpleType EByte where
     -- The restrictions are:
     simpleTypeText (EByte x) = simpleTypeText x
  
-newtype EByteArray = EByteArray Xsd.HexBinary deriving (Eq,Show)
+newtype EByteArray = EByteArray Xsd.HexBinary deriving (GHCG.Generic,Eq,Show)
 instance Restricts EByteArray Xsd.HexBinary where
     restricts (EByteArray x) = x
 instance SchemaType EByteArray where
@@ -927,7 +929,7 @@ instance SimpleType EByteArray where
     -- The restrictions are:
     simpleTypeText (EByteArray x) = simpleTypeText x
  
-newtype EByteObject = EByteObject EByte deriving (Eq,Show)
+newtype EByteObject = EByteObject EByte deriving (GHCG.Generic,Eq,Show)
 instance Restricts EByteObject EByte where
     restricts (EByteObject x) = x
 instance SchemaType EByteObject where
@@ -942,7 +944,7 @@ instance SimpleType EByteObject where
     -- The restrictions are:
     simpleTypeText (EByteObject x) = simpleTypeText x
  
-newtype EChar = EChar Xsd.XsdString deriving (Eq,Show)
+newtype EChar = EChar Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EChar Xsd.XsdString where
     restricts (EChar x) = x
 instance SchemaType EChar where
@@ -957,7 +959,7 @@ instance SimpleType EChar where
     -- The restrictions are:
     simpleTypeText (EChar x) = simpleTypeText x
  
-newtype ECharacterObject = ECharacterObject EChar deriving (Eq,Show)
+newtype ECharacterObject = ECharacterObject EChar deriving (GHCG.Generic,Eq,Show)
 instance Restricts ECharacterObject EChar where
     restricts (ECharacterObject x) = x
 instance SchemaType ECharacterObject where
@@ -972,7 +974,7 @@ instance SimpleType ECharacterObject where
     -- The restrictions are:
     simpleTypeText (ECharacterObject x) = simpleTypeText x
  
-newtype EDate = EDate Xsd.XsdString deriving (Eq,Show)
+newtype EDate = EDate Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EDate Xsd.XsdString where
     restricts (EDate x) = x
 instance SchemaType EDate where
@@ -987,7 +989,7 @@ instance SimpleType EDate where
     -- The restrictions are:
     simpleTypeText (EDate x) = simpleTypeText x
  
-newtype EDiagnosticChain = EDiagnosticChain Xsd.XsdString deriving (Eq,Show)
+newtype EDiagnosticChain = EDiagnosticChain Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EDiagnosticChain Xsd.XsdString where
     restricts (EDiagnosticChain x) = x
 instance SchemaType EDiagnosticChain where
@@ -1002,7 +1004,7 @@ instance SimpleType EDiagnosticChain where
     -- The restrictions are:
     simpleTypeText (EDiagnosticChain x) = simpleTypeText x
  
-newtype EDouble = EDouble Xsd.Double deriving (Eq,Show)
+newtype EDouble = EDouble Xsd.Double deriving (GHCG.Generic,Eq,Show)
 instance Restricts EDouble Xsd.Double where
     restricts (EDouble x) = x
 instance SchemaType EDouble where
@@ -1017,7 +1019,7 @@ instance SimpleType EDouble where
     -- The restrictions are:
     simpleTypeText (EDouble x) = simpleTypeText x
  
-newtype EDoubleObject = EDoubleObject EDouble deriving (Eq,Show)
+newtype EDoubleObject = EDoubleObject EDouble deriving (GHCG.Generic,Eq,Show)
 instance Restricts EDoubleObject EDouble where
     restricts (EDoubleObject x) = x
 instance SchemaType EDoubleObject where
@@ -1032,7 +1034,7 @@ instance SimpleType EDoubleObject where
     -- The restrictions are:
     simpleTypeText (EDoubleObject x) = simpleTypeText x
  
-newtype EEList = EEList Xsd.XsdString deriving (Eq,Show)
+newtype EEList = EEList Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EEList Xsd.XsdString where
     restricts (EEList x) = x
 instance SchemaType EEList where
@@ -1047,7 +1049,7 @@ instance SimpleType EEList where
     -- The restrictions are:
     simpleTypeText (EEList x) = simpleTypeText x
  
-newtype EEnumerator = EEnumerator Xsd.XsdString deriving (Eq,Show)
+newtype EEnumerator = EEnumerator Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EEnumerator Xsd.XsdString where
     restricts (EEnumerator x) = x
 instance SchemaType EEnumerator where
@@ -1062,7 +1064,7 @@ instance SimpleType EEnumerator where
     -- The restrictions are:
     simpleTypeText (EEnumerator x) = simpleTypeText x
  
-newtype EFeatureMap = EFeatureMap Xsd.XsdString deriving (Eq,Show)
+newtype EFeatureMap = EFeatureMap Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EFeatureMap Xsd.XsdString where
     restricts (EFeatureMap x) = x
 instance SchemaType EFeatureMap where
@@ -1077,7 +1079,7 @@ instance SimpleType EFeatureMap where
     -- The restrictions are:
     simpleTypeText (EFeatureMap x) = simpleTypeText x
  
-newtype EFeatureMapEntry = EFeatureMapEntry Xsd.XsdString deriving (Eq,Show)
+newtype EFeatureMapEntry = EFeatureMapEntry Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EFeatureMapEntry Xsd.XsdString where
     restricts (EFeatureMapEntry x) = x
 instance SchemaType EFeatureMapEntry where
@@ -1092,7 +1094,7 @@ instance SimpleType EFeatureMapEntry where
     -- The restrictions are:
     simpleTypeText (EFeatureMapEntry x) = simpleTypeText x
  
-newtype EFloat = EFloat Xsd.Float deriving (Eq,Show)
+newtype EFloat = EFloat Xsd.Float deriving (GHCG.Generic,Eq,Show)
 instance Restricts EFloat Xsd.Float where
     restricts (EFloat x) = x
 instance SchemaType EFloat where
@@ -1107,7 +1109,7 @@ instance SimpleType EFloat where
     -- The restrictions are:
     simpleTypeText (EFloat x) = simpleTypeText x
  
-newtype EFloatObject = EFloatObject EFloat deriving (Eq,Show)
+newtype EFloatObject = EFloatObject EFloat deriving (GHCG.Generic,Eq,Show)
 instance Restricts EFloatObject EFloat where
     restricts (EFloatObject x) = x
 instance SchemaType EFloatObject where
@@ -1122,7 +1124,7 @@ instance SimpleType EFloatObject where
     -- The restrictions are:
     simpleTypeText (EFloatObject x) = simpleTypeText x
  
-newtype EInt = EInt Xsd.XsdString deriving (Eq,Show)
+newtype EInt = EInt Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EInt Xsd.XsdString where
     restricts (EInt x) = x
 instance SchemaType EInt where
@@ -1137,7 +1139,7 @@ instance SimpleType EInt where
     -- The restrictions are:
     simpleTypeText (EInt x) = simpleTypeText x
  
-newtype EIntegerObject = EIntegerObject EInt deriving (Eq,Show)
+newtype EIntegerObject = EIntegerObject EInt deriving (GHCG.Generic,Eq,Show)
 instance Restricts EIntegerObject EInt where
     restricts (EIntegerObject x) = x
 instance SchemaType EIntegerObject where
@@ -1152,7 +1154,7 @@ instance SimpleType EIntegerObject where
     -- The restrictions are:
     simpleTypeText (EIntegerObject x) = simpleTypeText x
  
-newtype EJavaClass = EJavaClass Xsd.XsdString deriving (Eq,Show)
+newtype EJavaClass = EJavaClass Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EJavaClass Xsd.XsdString where
     restricts (EJavaClass x) = x
 instance SchemaType EJavaClass where
@@ -1167,7 +1169,7 @@ instance SimpleType EJavaClass where
     -- The restrictions are:
     simpleTypeText (EJavaClass x) = simpleTypeText x
  
-newtype EJavaObject = EJavaObject Xsd.XsdString deriving (Eq,Show)
+newtype EJavaObject = EJavaObject Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EJavaObject Xsd.XsdString where
     restricts (EJavaObject x) = x
 instance SchemaType EJavaObject where
@@ -1182,7 +1184,7 @@ instance SimpleType EJavaObject where
     -- The restrictions are:
     simpleTypeText (EJavaObject x) = simpleTypeText x
  
-newtype ELong = ELong Xsd.Long deriving (Eq,Show)
+newtype ELong = ELong Xsd.Long deriving (GHCG.Generic,Eq,Show)
 instance Restricts ELong Xsd.Long where
     restricts (ELong x) = x
 instance SchemaType ELong where
@@ -1197,7 +1199,7 @@ instance SimpleType ELong where
     -- The restrictions are:
     simpleTypeText (ELong x) = simpleTypeText x
  
-newtype ELongObject = ELongObject ELong deriving (Eq,Show)
+newtype ELongObject = ELongObject ELong deriving (GHCG.Generic,Eq,Show)
 instance Restricts ELongObject ELong where
     restricts (ELongObject x) = x
 instance SchemaType ELongObject where
@@ -1212,7 +1214,7 @@ instance SimpleType ELongObject where
     -- The restrictions are:
     simpleTypeText (ELongObject x) = simpleTypeText x
  
-newtype EMap = EMap Xsd.XsdString deriving (Eq,Show)
+newtype EMap = EMap Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EMap Xsd.XsdString where
     restricts (EMap x) = x
 instance SchemaType EMap where
@@ -1227,7 +1229,7 @@ instance SimpleType EMap where
     -- The restrictions are:
     simpleTypeText (EMap x) = simpleTypeText x
  
-newtype EResource = EResource Xsd.XsdString deriving (Eq,Show)
+newtype EResource = EResource Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EResource Xsd.XsdString where
     restricts (EResource x) = x
 instance SchemaType EResource where
@@ -1242,7 +1244,7 @@ instance SimpleType EResource where
     -- The restrictions are:
     simpleTypeText (EResource x) = simpleTypeText x
  
-newtype EResourceSet = EResourceSet Xsd.XsdString deriving (Eq,Show)
+newtype EResourceSet = EResourceSet Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EResourceSet Xsd.XsdString where
     restricts (EResourceSet x) = x
 instance SchemaType EResourceSet where
@@ -1257,7 +1259,7 @@ instance SimpleType EResourceSet where
     -- The restrictions are:
     simpleTypeText (EResourceSet x) = simpleTypeText x
  
-newtype EShort = EShort Xsd.Short deriving (Eq,Show)
+newtype EShort = EShort Xsd.Short deriving (GHCG.Generic,Eq,Show)
 instance Restricts EShort Xsd.Short where
     restricts (EShort x) = x
 instance SchemaType EShort where
@@ -1272,7 +1274,7 @@ instance SimpleType EShort where
     -- The restrictions are:
     simpleTypeText (EShort x) = simpleTypeText x
  
-newtype EShortObject = EShortObject EShort deriving (Eq,Show)
+newtype EShortObject = EShortObject EShort deriving (GHCG.Generic,Eq,Show)
 instance Restricts EShortObject EShort where
     restricts (EShortObject x) = x
 instance SchemaType EShortObject where
@@ -1287,7 +1289,7 @@ instance SimpleType EShortObject where
     -- The restrictions are:
     simpleTypeText (EShortObject x) = simpleTypeText x
  
-newtype EString = EString Xsd.XsdString deriving (Eq,Show)
+newtype EString = EString Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EString Xsd.XsdString where
     restricts (EString x) = x
 instance SchemaType EString where
@@ -1306,7 +1308,7 @@ data EStringToStringMapEntry = EStringToStringMapEntry
         { eStringToStringMapEntry_key :: Maybe EString
         , eStringToStringMapEntry_value :: Maybe EString
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EStringToStringMapEntry where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1319,7 +1321,7 @@ instance SchemaType EStringToStringMapEntry where
                        ]
             []
  
-newtype ETreeIterator = ETreeIterator Xsd.XsdString deriving (Eq,Show)
+newtype ETreeIterator = ETreeIterator Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts ETreeIterator Xsd.XsdString where
     restricts (ETreeIterator x) = x
 instance SchemaType ETreeIterator where
@@ -1342,7 +1344,7 @@ data EGenericType = EGenericType
         , eGenericType_eTypeArguments :: [EGenericType]
         , eGenericType_eLowerBound :: Maybe EGenericType
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType EGenericType where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1368,7 +1370,7 @@ data ETypeParameter = ETypeParameter
         , eTypeParameter_eAnnotations :: [EAnnotation]
         , eTypeParameter_eBounds :: [EGenericType]
         }
-        deriving (Eq,Show)
+        deriving (GHCG.Generic,Eq,Show)
 instance SchemaType ETypeParameter where
     parseSchemaType s = do
         (pos,e) <- posnElement [s]
@@ -1389,7 +1391,7 @@ instance Extension ETypeParameter EModelElement where
               . (supertype :: ETypeParameter -> ENamedElement)
               
  
-newtype EInvocationTargetException = EInvocationTargetException Xsd.XsdString deriving (Eq,Show)
+newtype EInvocationTargetException = EInvocationTargetException Xsd.XsdString deriving (GHCG.Generic,Eq,Show)
 instance Restricts EInvocationTargetException Xsd.XsdString where
     restricts (EInvocationTargetException x) = x
 instance SchemaType EInvocationTargetException where

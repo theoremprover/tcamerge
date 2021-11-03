@@ -1,4 +1,4 @@
-{-# LANGUAGE PackageImports,TypeOperators,FlexibleInstances,FlexibleContexts,ScopedTypeVariables,UndecidableInstances #-}
+{-# LANGUAGE PackageImports,TypeOperators,FlexibleInstances,FlexibleContexts,ScopedTypeVariables,UndecidableInstances,MagicHash #-}
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 
 module DataTree (genericToHTMLString,genericToString,dataTreeToHTMLString,DataTree(..)) where
@@ -52,6 +52,11 @@ instance (DataTreeNode f,Datatype d) => DataTreeNode (M1 D d f) where
 
 instance DataTreeNode U1 where
 	dataTree _ U1 = []
+
+instance DataTreeNode (URec Float) where
+  	dataTree _ u = [ Leaf $ show u ]
+instance DataTreeNode (URec Double) where
+  	dataTree _ u = [ Leaf $ show u ]
 
 instance (DataTreeNode f1,DataTreeNode f2) => DataTreeNode (f1 :*: f2) where
 	dataTree mode (a :*: b) = dataTree mode a ++ dataTree mode b

@@ -18,8 +18,10 @@ readToolChain :: FilePath -> IO (ToolChain,[Content ()] -> Document ())
 readToolChain filepath = do
 	content <- readFile filepath
 	let Document prolog symtab root@(Elem qname attrs _) misc = xmlParse filepath content
-	let Right toolchain = fst $ runParser elementToolChain [CElem root noPos]
-	return (toolchain,\ e -> Document prolog symtab (Elem qname attrs e) misc)
+	case fst $ runParser elementToolChain [CElem root noPos] of
+		Left errmsg -> error errmsg
+		Right toolchain -> do
+			return (toolchain,\ e -> Document prolog symtab (Elem qname attrs e) misc)
 
 writeToolChain :: FilePath -> ([Content ()] -> Document ()) -> ToolChain -> IO ()
 writeToolChain filepath embed_f toolchain = do

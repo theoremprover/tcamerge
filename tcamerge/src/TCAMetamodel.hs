@@ -1,4 +1,4 @@
-{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, DeriveGeneric #-}
+{-# LANGUAGE MultiParamTypeClasses, FunctionalDependencies, DeriveGeneric, StandaloneDeriving #-}
 {-# OPTIONS_GHC -fno-warn-duplicate-exports #-}
 
 module TCAMetamodel
@@ -12,7 +12,13 @@ import Text.XML.HaXml.Schema.Schema as Schema
 import Text.XML.HaXml.OneOfN
 import qualified Text.XML.HaXml.Schema.PrimitiveTypes as Xsd
 import Ecore
+
  
+deriving instance GHCG.Generic Xsd.XsdString
+deriving instance GHCG.Generic Xsd.AnyURI
+deriving instance GHCG.Generic Xsd.Float
+deriving instance GHCG.Generic Xsd.Double
+
 -- Some hs-boot imports are required, for fwd-declaring types.
  
 elementIIdentifiable :: XMLParser IIdentifiable
@@ -4235,7 +4241,7 @@ instance Extension CommandLineParameter IIdentifiable where
               
  
 --  (There are no subtypes defined for this abstract type.)
-data WithNameAndPath = WithNameAndPath deriving (GHCG.Generic,Eq,Show,GHCG.Generic)
+data WithNameAndPath = WithNameAndPath deriving (GHCG.Generic,Eq,Show)
 instance SchemaType WithNameAndPath where
     parseSchemaType s = fail "Parse failed when expecting an extension type of WithNameAndPath:\n  No extension types are known."
     schemaTypeToXML s _ = toXMLElement s [] []
