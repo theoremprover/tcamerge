@@ -13,10 +13,7 @@ copyright:           2021 Robert Reitmeier
 
 dependencies:
   - base >= 4.7 && < 5
-  - HaXml
-  - pretty
-  - html
-  - language-c
+  - xml
 
 executables:
   tcamerge-exe:
