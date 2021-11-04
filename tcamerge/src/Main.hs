@@ -29,7 +29,7 @@ writeToolChain filepath embed_f toolchain = do
 
 main :: IO ()
 main = do
-	(base,embedbase) <- readToolChain "Branch.tca"
+	(base,embedbase) <- readToolChain "Branch2.tca"
 	writeFile "Branch.tca.html" $ genericToHTMLString base
 {-
 	(mod1,embedmod1) <- readToolChain "newtool1.tca"
