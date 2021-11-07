@@ -65,38 +65,38 @@
     <xsd:attribute ecore:name="Comment" name="Comment" type="ecore:EString"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:interface="true" name="IAssumable">
-    <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" default="false" ecore:name="IsAssumption" ecore:unsettable="false" name="IsAssumption" type="ecore:EBoolean"/>
+    <xsd:attribute refresh="all" default="false" ecore:name="IsAssumption" ecore:unsettable="false" name="IsAssumption" type="ecore:EBoolean"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:interface="true" name="IVirtualizable">
     <xsd:attribute ecore:name="Virtual" ecore:unsettable="false" name="Virtual" type="ecore:EBoolean"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:interface="true" name="IDeactivatable">
-    <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Deactivated" ecore:unsettable="false" name="Deactivated" type="ecore:EBoolean"/>
+    <xsd:attribute refresh="all" ecore:name="Deactivated" ecore:unsettable="false" name="Deactivated" type="ecore:EBoolean"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:interface="true" name="IImpactable">
-    <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" default="true" ecore:name="Impact" ecore:unsettable="false" name="Impact" type="ecore:EBoolean"/>
+    <xsd:attribute refresh="all" default="true" ecore:name="Impact" ecore:unsettable="false" name="Impact" type="ecore:EBoolean"/>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:implements="tcm:IDeactivatable tcm:IAssumable" ecore:interface="true" name="IToolChainElement">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable"/>
+      <xsd:extension base="IIdentifiable"/>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType ecore:constraints="ToolOK ToolComplete ToolImpactCheck DescriptionOK NameUnique ExcelName NoImpactComment Deactivated ImpactPlausibility IDUnique Reviewed QKit_KnownBugs Qkit_Reviews  Qkit_RobTests QKit_Variants Variant_Consistency Qual_TestResults Qual_TestAnalysis Qual_Documentation" ecore:implements="tcm:IVirtualizable tcm:IImpactable tcm:WithNameAndPath" name="Tool">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element ecore:name="UseCases" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="UseCases" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:UseCase"/>
-          <xsd:element ecore:name="Costs" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Costs" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ToolCosts"/>
-          <xsd:element ecore:name="Qualifications" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Qualifications" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Qualification"/>
-          <xsd:element ecore:name="Tests" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tests" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Test"/>
-          <xsd:element ecore:name="Identifications" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Identifications" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Identification"/>
-          <xsd:element ecore:name="KnownBugs" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="KnownBugs" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:KnownBug"/>
-          <xsd:element ecore:name="QualificationProjects" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationProjects" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationProject"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
-          <xsd:element ecore:name="TestRuns" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TestRuns" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:TestRun"/>
-          <xsd:element ecore:name="Artifacts" ecore:opposite="ToolChain" ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Artifacts" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Artifact"/>
-          <xsd:element ecore:name="AnomalousOpConds" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="AnomalousOpConds" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:AnomalousOpCond"/>
-          <xsd:element ecore:name="Parameters" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parameters" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Parameter"/>
+          <xsd:element ecore:name="UseCases" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="UseCases" type="UseCase"/>
+          <xsd:element ecore:name="Costs" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Costs" type="ToolCosts"/>
+          <xsd:element ecore:name="Qualifications" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Qualifications" type="Qualification"/>
+          <xsd:element ecore:name="Tests" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tests" type="Test"/>
+          <xsd:element ecore:name="Identifications" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Identifications" type="Identification"/>
+          <xsd:element ecore:name="KnownBugs" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="KnownBugs" type="KnownBug"/>
+          <xsd:element ecore:name="QualificationProjects" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationProjects" type="QualificationProject"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
+          <xsd:element ecore:name="TestRuns" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TestRuns" type="TestRun"/>
+          <xsd:element ecore:name="Artifacts" ecore:opposite="ToolChain" ecore:ordered="false" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Artifacts" type="Artifact"/>
+          <xsd:element ecore:name="AnomalousOpConds" ecore:opposite="Tool" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="AnomalousOpConds" type="AnomalousOpCond"/>
+          <xsd:element ecore:name="Parameters" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parameters" type="Parameter"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="PartOf" ecore:opposite="Tools" ecore:reference="tcm:ToolChain" name="PartOf" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="ToolAttributes" ecore:opposite="Tools" ecore:reference="tcm:ToolAttribute" name="ToolAttributes">
@@ -104,17 +104,17 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Inputs" ecore:opposite="UsedByTool" ecore:reference="tcm:Artifact" name="Inputs">
+        <xsd:attribute refresh="all" ecore:name="Inputs" ecore:opposite="UsedByTool" ecore:reference="tcm:Artifact" name="Inputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Outputs" ecore:opposite="CreatedByTool" ecore:reference="tcm:Artifact" name="Outputs">
+        <xsd:attribute refresh="all" ecore:name="Outputs" ecore:opposite="CreatedByTool" ecore:reference="tcm:Artifact" name="Outputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="InputsOutputs" ecore:opposite="ModifiedByTool" ecore:reference="tcm:Artifact" name="InputsOutputs">
+        <xsd:attribute refresh="all" ecore:name="InputsOutputs" ecore:opposite="ModifiedByTool" ecore:reference="tcm:Artifact" name="InputsOutputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -154,31 +154,31 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="UseCaseOK UseCaseComplete UseCaseImpactCheck DescriptionOK NameUnique ExcelName NoImpactComment NoImpactWithErrors VirtualUsage Deactivated ImpactPlausibility HasArtifacts IDUnique HasAttributes Reviewed QKit_UseCases Qkit_Reviews QKit_Test_Assign QKit_Tests_Disjoint QKit_Variants Variant_Consistency" ecore:implements="tcm:IVirtualizable tcm:IImpactable tcm:WithNameAndPath" name="UseCase">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Errors" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Error"/>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Checks" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Checks" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Check"/>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Restrictions" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Restrictions" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Restriction"/>
-          <xsd:element ecore:name="Costs" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Costs" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:UseCaseCosts"/>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Parts" ecore:opposite="PartOf" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parts" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:UseCase"/>
-          <xsd:element ecore:name="InferredErrors" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredErrors" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:InferredError"/>
-          <xsd:element ecore:name="InferredChecks" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredChecks" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:InferredCheck"/>
-          <xsd:element ecore:name="InferredRestrictions" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredRestrictions" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:InferredRestriction"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
-          <xsd:element ecore:name="Parameters" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parameters" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Parameter"/>
+          <xsd:element refresh="all" ecore:name="Errors" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="Error"/>
+          <xsd:element refresh="all" ecore:name="Checks" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Checks" type="Check"/>
+          <xsd:element refresh="all" ecore:name="Restrictions" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Restrictions" type="Restriction"/>
+          <xsd:element ecore:name="Costs" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Costs" type="UseCaseCosts"/>
+          <xsd:element isUsed="notEmpty" ecore:name="Parts" ecore:opposite="PartOf" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parts" type="UseCase"/>
+          <xsd:element ecore:name="InferredErrors" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredErrors" type="InferredError"/>
+          <xsd:element ecore:name="InferredChecks" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredChecks" type="InferredCheck"/>
+          <xsd:element ecore:name="InferredRestrictions" ecore:opposite="UseCase" ecore:resolveProxies="true" ecore:transient="true" maxOccurs="unbounded" minOccurs="0" name="InferredRestrictions" type="InferredRestriction"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="UseCase" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
+          <xsd:element ecore:name="Parameters" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Parameters" type="Parameter"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Tool" ecore:opposite="UseCases" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Inputs" ecore:opposite="UsedBy" ecore:reference="tcm:Artifact" name="Inputs">
+        <xsd:attribute refresh="all" ecore:name="Inputs" ecore:opposite="UsedBy" ecore:reference="tcm:Artifact" name="Inputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Outputs" ecore:opposite="CreatedBy" ecore:reference="tcm:Artifact" name="Outputs">
+        <xsd:attribute refresh="all" ecore:name="Outputs" ecore:opposite="CreatedBy" ecore:reference="tcm:Artifact" name="Outputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="InputsOutputs" ecore:opposite="ModifiedBy" ecore:reference="tcm:Artifact" name="InputsOutputs">
+        <xsd:attribute refresh="all" ecore:name="InputsOutputs" ecore:opposite="ModifiedBy" ecore:reference="tcm:Artifact" name="InputsOutputs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -188,17 +188,17 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="MandatoryFeatures" ecore:reference="tcm:Feature" name="MandatoryFeatures">
+        <xsd:attribute refresh="all" ecore:name="MandatoryFeatures" ecore:reference="tcm:Feature" name="MandatoryFeatures">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ExcludedFeatures" ecore:reference="tcm:Feature" name="ExcludedFeatures">
+        <xsd:attribute refresh="all" ecore:name="ExcludedFeatures" ecore:reference="tcm:Feature" name="ExcludedFeatures">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="RequiredFeatures" ecore:opposite="UseCases" ecore:reference="tcm:Feature" name="RequiredFeatures">
+        <xsd:attribute refresh="all" ecore:name="RequiredFeatures" ecore:opposite="UseCases" ecore:reference="tcm:Feature" name="RequiredFeatures">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -253,7 +253,7 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute default="UNQUALIFIED" ecore:changeable="false" ecore:derived="true" ecore:lowerBound="1" ecore:name="QualificationResult" ecore:transient="true" ecore:unsettable="false" name="QualificationResult" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationResult"/>
+        <xsd:attribute default="UNQUALIFIED" ecore:changeable="false" ecore:derived="true" ecore:lowerBound="1" ecore:name="QualificationResult" ecore:transient="true" ecore:unsettable="false" name="QualificationResult" type="QualificationResult"/>
         <xsd:attribute ecore:opposite="useCases" ecore:reference="tcm:TestResult" name="testResults">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
@@ -265,48 +265,48 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="ArtefactOK DescriptionOK NameUnique ExcelName Deactivated IDUnique Reviewed QKit_Feature Qkit_Reviews Variant_Consistency" name="Artifact">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Artifact" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Artifact" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Format" name="Format" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="CreatedBy" ecore:opposite="Outputs" ecore:reference="tcm:UseCase" name="CreatedBy">
+        <xsd:attribute isUsed="notEmpty" ecore:name="CreatedBy" ecore:opposite="Outputs" ecore:reference="tcm:UseCase" name="CreatedBy">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="UsedBy" ecore:opposite="Inputs" ecore:reference="tcm:UseCase" name="UsedBy">
+        <xsd:attribute isUsed="notEmpty" ecore:name="UsedBy" ecore:opposite="Inputs" ecore:reference="tcm:UseCase" name="UsedBy">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="ModifiedBy" ecore:opposite="InputsOutputs" ecore:reference="tcm:UseCase" name="ModifiedBy">
+        <xsd:attribute isUsed="notEmpty" ecore:name="ModifiedBy" ecore:opposite="InputsOutputs" ecore:reference="tcm:UseCase" name="ModifiedBy">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="ToolChain" ecore:opposite="Artifacts" ecore:reference="tcm:Tool" name="ToolChain" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="IsA" ecore:opposite="Occurrences" ecore:reference="tcm:Artifact" name="IsA">
+        <xsd:attribute isUsed="notEmpty" ecore:name="IsA" ecore:opposite="Occurrences" ecore:reference="tcm:Artifact" name="IsA">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Occurrences" ecore:opposite="IsA" ecore:reference="tcm:Artifact" name="Occurrences">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Occurrences" ecore:opposite="IsA" ecore:reference="tcm:Artifact" name="Occurrences">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="CreatedByTool" ecore:opposite="Outputs" ecore:reference="tcm:Tool" name="CreatedByTool">
+        <xsd:attribute isUsed="notEmpty" ecore:name="CreatedByTool" ecore:opposite="Outputs" ecore:reference="tcm:Tool" name="CreatedByTool">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="UsedByTool" ecore:opposite="Inputs" ecore:reference="tcm:Tool" name="UsedByTool">
+        <xsd:attribute isUsed="notEmpty" ecore:name="UsedByTool" ecore:opposite="Inputs" ecore:reference="tcm:Tool" name="UsedByTool">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="ModifiedByTool" ecore:opposite="InputsOutputs" ecore:reference="tcm:Tool" name="ModifiedByTool">
+        <xsd:attribute isUsed="notEmpty" ecore:name="ModifiedByTool" ecore:opposite="InputsOutputs" ecore:reference="tcm:Tool" name="ModifiedByTool">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -328,17 +328,17 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="ErrorOK ErrorSelfCheck ErrorSelfRestriction ErrorImpactCheck DescriptionOK NameUnique ExcelName NoImpactComment Deactivated SubsumesErrors IDUnique NoUnsubsumedDerived Reviewed QKit_Analysis Qkit_Reviews InvalidMitigation Variant_Consistency QKit_Variants QKit_SufficientlyTestMethods" ecore:implements="tcm:IBug tcm:IDerivable" name="Error">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ErrorOccurrence">
+      <xsd:extension base="ErrorOccurrence">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Error" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Error" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="UseCase" ecore:opposite="Errors" ecore:reference="tcm:UseCase" name="UseCase" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="DiscoveredBy" ecore:opposite="DetectedError" ecore:reference="tcm:Check" name="DiscoveredBy">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="DiscoveredBy" ecore:opposite="DetectedError" ecore:reference="tcm:Check" name="DiscoveredBy">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="AvoidedBy" ecore:opposite="AvoidedError" ecore:reference="tcm:Restriction" name="AvoidedBy">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="AvoidedBy" ecore:opposite="AvoidedError" ecore:reference="tcm:Restriction" name="AvoidedBy">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -356,13 +356,13 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Tests" ecore:opposite="Errors" ecore:reference="tcm:Test" name="Tests">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Tests" ecore:opposite="Errors" ecore:reference="tcm:Test" name="Tests">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="KnownBugs" ecore:opposite="Errors" ecore:reference="tcm:KnownBug" name="KnownBugs">
+        <xsd:attribute isUsed="notEmpty" ecore:name="KnownBugs" ecore:opposite="Errors" ecore:reference="tcm:KnownBug" name="KnownBugs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -372,7 +372,7 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Qualifications" ecore:opposite="Errors" ecore:reference="tcm:Qualification" name="Qualifications">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Qualifications" ecore:opposite="Errors" ecore:reference="tcm:Qualification" name="Qualifications">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -401,18 +401,18 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="DescriptionOK NameUnique ExcelName Deactivated IDUnique Reviewed Qkit_Reviews InvalidMitigation  Variant_Consistency" ecore:implements="tcm:CheckOccurrence tcm:IDerivable" name="Check">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element ecore:name="Errors" ecore:opposite="Check" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Error"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Check" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Errors" ecore:opposite="Check" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="Error"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Check" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="UseCase" ecore:opposite="Checks" ecore:reference="tcm:UseCase" name="UseCase" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="DetectedError" ecore:opposite="DiscoveredBy" ecore:reference="tcm:Error" name="DetectedError">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="DetectedError" ecore:opposite="DiscoveredBy" ecore:reference="tcm:Error" name="DetectedError">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="DetectionProbability" ecore:unsettable="false" name="DetectionProbability" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Probability"/>
+        <xsd:attribute refresh="all" ecore:name="DetectionProbability" ecore:unsettable="false" name="DetectionProbability" type="Probability"/>
         <xsd:attribute ecore:name="Attribute" ecore:opposite="Checks" ecore:reference="tcm:Attribute" name="Attribute" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="Subsumes" ecore:opposite="IsSubsumedFrom" ecore:reference="tcm:Check" name="Subsumes">
           <xsd:simpleType>
@@ -425,7 +425,7 @@
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="DetectedKnownBugs" ecore:opposite="DiscoveredBy" ecore:reference="tcm:KnownBug" name="DetectedKnownBugs">
+        <xsd:attribute isUsed="notEmpty" ecore:name="DetectedKnownBugs" ecore:opposite="DiscoveredBy" ecore:reference="tcm:KnownBug" name="DetectedKnownBugs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -435,9 +435,9 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute ecore:name="Category" ecore:unsettable="false" name="Category" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Category"/>
-        <xsd:attribute ecore:name="Effort" ecore:unsettable="false" name="Effort" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Effort"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="DetectedAnomOpConds" ecore:opposite="DiscoveredBy" ecore:reference="tcm:AnomalousOpCond" name="DetectedAnomOpConds">
+        <xsd:attribute ecore:name="Category" ecore:unsettable="false" name="Category" type="Category"/>
+        <xsd:attribute ecore:name="Effort" ecore:unsettable="false" name="Effort" type="Effort"/>
+        <xsd:attribute isUsed="notEmpty" ecore:name="DetectedAnomOpConds" ecore:opposite="DiscoveredBy" ecore:reference="tcm:AnomalousOpCond" name="DetectedAnomOpConds">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -454,28 +454,28 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="ToolChainOK ToolChainComplete DescriptionOK NameUnique ExcelName NoImpactComment Deactivated ProductDefined" name="ToolChain">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Tool">
+      <xsd:extension base="Tool">
         <xsd:sequence>
-          <xsd:element ecore:name="Tools" ecore:opposite="PartOf" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tools" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Tool"/>
-          <xsd:element ecore:name="DefaultErrorAttributes" ecore:opposite="ToolChain" ecore:resolveProxies="true" minOccurs="0" name="DefaultErrorAttributes" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:DefaultErrorAttributes"/>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Variants" ecore:opposite="ToolChain" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Variants" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Variant"/>
-          <xsd:element ecore:name="StandardMethods" ecore:opposite="ToolChain" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="StandardMethods" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:StandardMethods"/>
-          <xsd:element ecore:name="ProgressTrackingStates" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="ProgressTrackingStates" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ProgressTrackingState"/>
+          <xsd:element ecore:name="Tools" ecore:opposite="PartOf" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tools" type="Tool"/>
+          <xsd:element ecore:name="DefaultErrorAttributes" ecore:opposite="ToolChain" ecore:resolveProxies="true" minOccurs="0" name="DefaultErrorAttributes" type="DefaultErrorAttributes"/>
+          <xsd:element refresh="all" ecore:name="Variants" ecore:opposite="ToolChain" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Variants" type="Variant"/>
+          <xsd:element ecore:name="StandardMethods" ecore:opposite="ToolChain" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="StandardMethods" type="StandardMethods"/>
+          <xsd:element ecore:name="ProgressTrackingStates" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="ProgressTrackingStates" type="ProgressTrackingState"/>
         </xsd:sequence>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ASIL" ecore:unsettable="false" name="ASIL" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ASIL"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="UseAssumptions" ecore:unsettable="false" name="UseAssumptions" type="ecore:EBoolean"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ShowOnlyAssumptions" name="ShowOnlyAssumptions" type="ecore:EBoolean"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="IgnoreArtifacts" ecore:unsettable="false" name="IgnoreArtifacts" type="ecore:EBoolean"/>
+        <xsd:attribute refresh="all" ecore:name="ASIL" ecore:unsettable="false" name="ASIL" type="ASIL"/>
+        <xsd:attribute refresh="all" ecore:name="UseAssumptions" ecore:unsettable="false" name="UseAssumptions" type="ecore:EBoolean"/>
+        <xsd:attribute refresh="all" ecore:name="ShowOnlyAssumptions" name="ShowOnlyAssumptions" type="ecore:EBoolean"/>
+        <xsd:attribute refresh="all" ecore:name="IgnoreArtifacts" ecore:unsettable="false" name="IgnoreArtifacts" type="ecore:EBoolean"/>
         <xsd:attribute ecore:name="DefaultAssumptionValueForNewElements" name="DefaultAssumptionValueForNewElements" type="ecore:EBoolean"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" default="false" ecore:name="ShowErrorStatistics" name="ShowErrorStatistics" type="ecore:EBoolean"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ActiveVariants" ecore:reference="tcm:Variant" name="ActiveVariants">
+        <xsd:attribute refresh="all" default="false" ecore:name="ShowErrorStatistics" name="ShowErrorStatistics" type="ecore:EBoolean"/>
+        <xsd:attribute refresh="all" ecore:name="ActiveVariants" ecore:reference="tcm:Variant" name="ActiveVariants">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="CreateMissingIDsDuringValidation" name="CreateMissingIDsDuringValidation" type="ecore:EBoolean"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="RiskLevel" ecore:unsettable="false" name="RiskLevel" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:RiskLevel"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="SafetyStandard" ecore:unsettable="false" name="SafetyStandard" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:SafetyStandard"/>
+        <xsd:attribute refresh="all" ecore:name="RiskLevel" ecore:unsettable="false" name="RiskLevel" type="RiskLevel"/>
+        <xsd:attribute refresh="all" ecore:name="SafetyStandard" ecore:unsettable="false" name="SafetyStandard" type="SafetyStandard"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -511,14 +511,14 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="DescriptionOK NameUnique ExcelName Deactivated IDUnique Reviewed Qkit_Reviews InvalidMitigation Variant_Consistency" ecore:implements="tcm:RestrictionOccurrence tcm:IDerivable" name="Restriction">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element ecore:name="Errors" ecore:opposite="Restriction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Error"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Restriction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Errors" ecore:opposite="Restriction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="Error"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Restriction" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="RestrictionProbability" ecore:unsettable="false" name="RestrictionProbability" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Probability"/>
+        <xsd:attribute refresh="all" ecore:name="RestrictionProbability" ecore:unsettable="false" name="RestrictionProbability" type="Probability"/>
         <xsd:attribute ecore:name="UseCase" ecore:opposite="Restrictions" ecore:reference="tcm:UseCase" name="UseCase" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="AvoidedError" ecore:opposite="AvoidedBy" ecore:reference="tcm:Error" name="AvoidedError">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="AvoidedError" ecore:opposite="AvoidedBy" ecore:reference="tcm:Error" name="AvoidedError">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -535,7 +535,7 @@
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="AvoidedKnownBugs" ecore:opposite="AvoidedBy" ecore:reference="tcm:KnownBug" name="AvoidedKnownBugs">
+        <xsd:attribute isUsed="notEmpty" ecore:name="AvoidedKnownBugs" ecore:opposite="AvoidedBy" ecore:reference="tcm:KnownBug" name="AvoidedKnownBugs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -545,9 +545,9 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute ecore:name="Category" ecore:unsettable="false" name="Category" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Category"/>
-        <xsd:attribute ecore:name="Effort" ecore:unsettable="false" name="Effort" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Effort"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="AvoidedAnomOpConds" ecore:opposite="AvoidedBy" ecore:reference="tcm:AnomalousOpCond" name="AvoidedAnomOpConds">
+        <xsd:attribute ecore:name="Category" ecore:unsettable="false" name="Category" type="Category"/>
+        <xsd:attribute ecore:name="Effort" ecore:unsettable="false" name="Effort" type="Effort"/>
+        <xsd:attribute isUsed="notEmpty" ecore:name="AvoidedAnomOpConds" ecore:opposite="AvoidedBy" ecore:reference="tcm:AnomalousOpCond" name="AvoidedAnomOpConds">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -555,45 +555,45 @@
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
-  <xsd:complexType abstract="true" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:constraints="IDUnique" name="Costs">
+  <xsd:complexType abstract="true" refresh="all" ecore:constraints="IDUnique" name="Costs">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="QualificationCosts" ecore:transient="true" ecore:unsettable="false" name="QualificationCosts" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="NumberOfLicences" ecore:transient="true" ecore:unsettable="false" name="NumberOfLicences" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="NumberOfApplications" ecore:transient="true" ecore:unsettable="false" name="NumberOfApplications" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Price" ecore:unsettable="false" name="Price" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ApplicationCost" ecore:transient="true" ecore:unsettable="false" name="ApplicationCost" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="SupportCost" ecore:transient="true" ecore:unsettable="false" name="SupportCost" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="InstallationEffort" ecore:transient="true" ecore:unsettable="false" name="InstallationEffort" type="ecore:EInt"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" default="1.0" ecore:name="Cost" ecore:unsettable="false" name="Cost" type="ecore:EFloat"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Type" ecore:unsettable="false" name="Type" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:CostType"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Unit" ecore:unsettable="false" name="Unit" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:CostUnit"/>
+      <xsd:extension base="IIdentifiable">
+        <xsd:attribute refresh="all" ecore:name="QualificationCosts" ecore:transient="true" ecore:unsettable="false" name="QualificationCosts" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="NumberOfLicences" ecore:transient="true" ecore:unsettable="false" name="NumberOfLicences" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="NumberOfApplications" ecore:transient="true" ecore:unsettable="false" name="NumberOfApplications" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="Price" ecore:unsettable="false" name="Price" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="ApplicationCost" ecore:transient="true" ecore:unsettable="false" name="ApplicationCost" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="SupportCost" ecore:transient="true" ecore:unsettable="false" name="SupportCost" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" ecore:name="InstallationEffort" ecore:transient="true" ecore:unsettable="false" name="InstallationEffort" type="ecore:EInt"/>
+        <xsd:attribute refresh="all" default="1.0" ecore:name="Cost" ecore:unsettable="false" name="Cost" type="ecore:EFloat"/>
+        <xsd:attribute refresh="all" ecore:name="Type" ecore:unsettable="false" name="Type" type="CostType"/>
+        <xsd:attribute refresh="all" ecore:name="Unit" ecore:unsettable="false" name="Unit" type="CostUnit"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="ToolCosts">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Costs">
+      <xsd:extension base="Costs">
         <xsd:attribute ecore:name="Tool" ecore:opposite="Costs" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="UseCaseCosts">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Costs">
+      <xsd:extension base="Costs">
         <xsd:attribute ecore:name="UseCase" ecore:opposite="Costs" ecore:reference="tcm:UseCase" name="UseCase" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType ecore:constraints="DescriptionOK Deactivated IDUnique QUseless QIncomplete Qkit_Reviews  Variant_Consistency" name="Qualification">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Qualification" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Qualification" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Date" name="Date" type="ecore:EString"/>
         <xsd:attribute ecore:name="Tool" ecore:opposite="Qualifications" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="UseCases" ecore:opposite="Qualifications" ecore:reference="tcm:UseCase" name="UseCases">
+        <xsd:attribute isUsed="notEmpty" ecore:name="UseCases" ecore:opposite="Qualifications" ecore:reference="tcm:UseCase" name="UseCases">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -603,31 +603,31 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Tests" ecore:opposite="Qualifications" ecore:reference="tcm:Test" name="Tests">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Tests" ecore:opposite="Qualifications" ecore:reference="tcm:Test" name="Tests">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Identifications" ecore:opposite="Qualification" ecore:reference="tcm:Identification" name="Identifications">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Identifications" ecore:opposite="Qualification" ecore:reference="tcm:Identification" name="Identifications">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Errors" ecore:opposite="Qualifications" ecore:reference="tcm:Error" name="Errors">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Errors" ecore:opposite="Qualifications" ecore:reference="tcm:Error" name="Errors">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="Responsible" name="Responsible" type="ecore:EString"/>
-        <xsd:attribute ecore:name="QualificationResult" ecore:unsettable="false" name="QualificationResult" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationResult"/>
-        <xsd:attribute default="UNQUALIFIED" ecore:name="Method" ecore:unsettable="false" name="Method" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationMethod"/>
+        <xsd:attribute ecore:name="QualificationResult" ecore:unsettable="false" name="QualificationResult" type="QualificationResult"/>
+        <xsd:attribute default="UNQUALIFIED" ecore:name="Method" ecore:unsettable="false" name="Method" type="QualificationMethod"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType ecore:constraints="NoUseCasesInFeatures QKit_Feature QKit_Analysis Qkit_Reviews Variant_Consistency QKit_SufficientlyTestMethods" ecore:implements="tcm:IDerivable" name="Feature">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:UseCase">
+      <xsd:extension base="UseCase">
         <xsd:attribute ecore:name="InputPattern" name="InputPattern" type="ecore:EString"/>
         <xsd:attribute ecore:name="ArgumentPattern" name="ArgumentPattern" type="ecore:EString"/>
         <xsd:attribute ecore:name="UseCases" ecore:opposite="RequiredFeatures" ecore:reference="tcm:UseCase" name="UseCases">
@@ -652,35 +652,35 @@
   </xsd:complexType>
   <xsd:complexType name="InferredRestriction">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:RestrictionOccurrence">
+      <xsd:extension base="RestrictionOccurrence">
         <xsd:attribute ecore:lowerBound="1" ecore:name="SourceOccurrence" ecore:reference="tcm:RestrictionOccurrence" ecore:transient="true" name="SourceOccurrence" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="InferredError">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ErrorOccurrence">
+      <xsd:extension base="ErrorOccurrence">
         <xsd:attribute ecore:lowerBound="1" ecore:name="SourceOccurrence" ecore:reference="tcm:ErrorOccurrence" ecore:transient="true" name="SourceOccurrence" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="InferredCheck">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:CheckOccurrence">
+      <xsd:extension base="CheckOccurrence">
         <xsd:attribute ecore:lowerBound="1" ecore:name="SourceOccurrence" ecore:reference="tcm:CheckOccurrence" ecore:transient="true" name="SourceOccurrence" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:constraints="DescriptionOK NameUnique ExcelName IDUnique" name="Attribute">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="Errors" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Error"/>
-          <xsd:element ecore:name="Checks" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Checks" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Check"/>
-          <xsd:element ecore:name="Restrictions" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Restrictions" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Restriction"/>
-          <xsd:element ecore:name="Features" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Features" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Feature"/>
-          <xsd:element ecore:name="Tests" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tests" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Test"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Errors" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Errors" type="Error"/>
+          <xsd:element ecore:name="Checks" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Checks" type="Check"/>
+          <xsd:element ecore:name="Restrictions" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Restrictions" type="Restriction"/>
+          <xsd:element ecore:name="Features" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Features" type="Feature"/>
+          <xsd:element ecore:name="Tests" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Tests" type="Test"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Attribute" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="DefaultErrorAttributes" ecore:opposite="Attributes" ecore:reference="tcm:DefaultErrorAttributes" name="DefaultErrorAttributes" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
@@ -689,19 +689,19 @@
   </xsd:complexType>
   <xsd:complexType name="DefaultErrorAttributes">
     <xsd:sequence>
-      <xsd:element ecore:name="Attributes" ecore:opposite="DefaultErrorAttributes" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Attributes" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Attribute"/>
+      <xsd:element ecore:name="Attributes" ecore:opposite="DefaultErrorAttributes" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Attributes" type="Attribute"/>
     </xsd:sequence>
     <xsd:attribute ecore:name="ToolChain" ecore:opposite="DefaultErrorAttributes" ecore:reference="tcm:ToolChain" name="ToolChain" type="xsd:anyURI"/>
   </xsd:complexType>
   <xsd:complexType name="ToolAttribute">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Attribute">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Tools" ecore:opposite="ToolAttributes" ecore:reference="tcm:Tool" name="Tools">
+      <xsd:extension base="Attribute">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Tools" ecore:opposite="ToolAttributes" ecore:reference="tcm:Tool" name="Tools">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="UseCases" ecore:opposite="Attributes" ecore:reference="tcm:UseCase" name="UseCases">
+        <xsd:attribute isUsed="notEmpty" ecore:name="UseCases" ecore:opposite="Attributes" ecore:reference="tcm:UseCase" name="UseCases">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -711,8 +711,8 @@
   </xsd:complexType>
   <xsd:complexType name="ArtifactAttribute">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Attribute">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Artifacts" ecore:opposite="ArtifactAttributes" ecore:reference="tcm:Artifact" name="Artifacts">
+      <xsd:extension base="Attribute">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Artifacts" ecore:opposite="ArtifactAttributes" ecore:reference="tcm:Artifact" name="Artifacts">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -743,95 +743,95 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="DescriptionOK NameUnique ExcelName IDUnique QKit_Variants" ecore:implements="tcm:IDeactivatable" name="Variant">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="ToolChain" ecore:opposite="Variants" ecore:reference="tcm:ToolChain" name="ToolChain" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Tools" ecore:opposite="Variant" ecore:reference="tcm:Tool" name="Tools">
+      <xsd:extension base="IIdentifiable">
+        <xsd:attribute refresh="all" ecore:name="ToolChain" ecore:opposite="Variants" ecore:reference="tcm:ToolChain" name="ToolChain" type="xsd:anyURI"/>
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Tools" ecore:opposite="Variant" ecore:reference="tcm:Tool" name="Tools">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Artifacts" ecore:opposite="Variant" ecore:reference="tcm:Artifact" name="Artifacts">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Artifacts" ecore:opposite="Variant" ecore:reference="tcm:Artifact" name="Artifacts">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="UseCases" ecore:opposite="Variant" ecore:reference="tcm:UseCase" name="UseCases">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="UseCases" ecore:opposite="Variant" ecore:reference="tcm:UseCase" name="UseCases">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Qualifications" ecore:opposite="Variant" ecore:reference="tcm:Qualification" name="Qualifications">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Qualifications" ecore:opposite="Variant" ecore:reference="tcm:Qualification" name="Qualifications">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Checks" ecore:opposite="Variant" ecore:reference="tcm:Check" name="Checks">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Checks" ecore:opposite="Variant" ecore:reference="tcm:Check" name="Checks">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Errors" ecore:opposite="Variant" ecore:reference="tcm:Error" name="Errors">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Errors" ecore:opposite="Variant" ecore:reference="tcm:Error" name="Errors">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Restrictions" ecore:opposite="Variant" ecore:reference="tcm:Restriction" name="Restrictions">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Restrictions" ecore:opposite="Variant" ecore:reference="tcm:Restriction" name="Restrictions">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Tests" ecore:opposite="Variant" ecore:reference="tcm:Test" name="Tests">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Tests" ecore:opposite="Variant" ecore:reference="tcm:Test" name="Tests">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="KnownBugs" ecore:opposite="Variant" ecore:reference="tcm:KnownBug" name="KnownBugs">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="KnownBugs" ecore:opposite="Variant" ecore:reference="tcm:KnownBug" name="KnownBugs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="QualificationProjects" ecore:opposite="Variant" ecore:reference="tcm:QualificationProject" name="QualificationProjects">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="QualificationProjects" ecore:opposite="Variant" ecore:reference="tcm:QualificationProject" name="QualificationProjects">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="QualificationRoles" ecore:opposite="Variant" ecore:reference="tcm:QualificationRole" name="QualificationRoles">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="QualificationRoles" ecore:opposite="Variant" ecore:reference="tcm:QualificationRole" name="QualificationRoles">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="QualificationSteps" ecore:opposite="Variant" ecore:reference="tcm:QualificationStep" name="QualificationSteps">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="QualificationSteps" ecore:opposite="Variant" ecore:reference="tcm:QualificationStep" name="QualificationSteps">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="QualificationArtifacts" ecore:opposite="Variant" ecore:reference="tcm:QualificationArtifact" name="QualificationArtifacts">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="QualificationArtifacts" ecore:opposite="Variant" ecore:reference="tcm:QualificationArtifact" name="QualificationArtifacts">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Identifications" ecore:opposite="Variant" ecore:reference="tcm:Identification" name="Identifications">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Identifications" ecore:opposite="Variant" ecore:reference="tcm:Identification" name="Identifications">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="TestRuns" ecore:opposite="Variants" ecore:reference="tcm:TestRun" name="TestRuns">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="TestRuns" ecore:opposite="Variants" ecore:reference="tcm:TestRun" name="TestRuns">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="AnomalousOpConds" ecore:opposite="Variant" ecore:reference="tcm:AnomalousOpCond" name="AnomalousOpConds">
+        <xsd:attribute refresh="all" ecore:name="AnomalousOpConds" ecore:opposite="Variant" ecore:reference="tcm:AnomalousOpCond" name="AnomalousOpConds">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="Parameters" ecore:opposite="Variant" ecore:reference="tcm:Parameter" name="Parameters">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="Parameters" ecore:opposite="Variant" ecore:reference="tcm:Parameter" name="Parameters">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:refresh="all" ecore:name="EnumValues" ecore:opposite="Variant" ecore:reference="tcm:EnumValue" name="EnumValues">
+        <xsd:attribute isUsed="notEmpty" refresh="all" ecore:name="EnumValues" ecore:opposite="Variant" ecore:reference="tcm:EnumValue" name="EnumValues">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -841,8 +841,8 @@
   </xsd:complexType>
   <xsd:complexType name="ORVariant">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Variant">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
+      <xsd:extension base="Variant">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
           <xsd:simpleType>
             <xsd:restriction>
               <xsd:simpleType>
@@ -857,8 +857,8 @@
   </xsd:complexType>
   <xsd:complexType name="OneOfVariant">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Variant">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
+      <xsd:extension base="Variant">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
           <xsd:simpleType>
             <xsd:restriction>
               <xsd:simpleType>
@@ -873,8 +873,8 @@
   </xsd:complexType>
   <xsd:complexType name="ANDVariant">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Variant">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
+      <xsd:extension base="Variant">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Variants" ecore:reference="tcm:Variant" name="Variants" use="required">
           <xsd:simpleType>
             <xsd:restriction>
               <xsd:simpleType>
@@ -889,18 +889,18 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="DescriptionOK Implemented Usefull Packaged Consistent IDUnique Reviewed QKit_Tests QKit_Tests_Disjoint QKit_RobTests Qkit_Reviews QKit_Variants Variant_Consistency Qual_TestResults Qual_TestAnalysis SubTestMethods" ecore:implements="tcm:IDerivable tcm:WithNameAndPath" name="Test">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement">
+      <xsd:extension base="IToolChainElement">
         <xsd:sequence>
-          <xsd:element de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="SubTests" ecore:opposite="SuperTest" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubTests" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Test"/>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Test" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="SubTests" ecore:opposite="SuperTest" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubTests" type="Test"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Test" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="Errors" ecore:opposite="Tests" ecore:reference="tcm:Error" name="Errors">
+        <xsd:attribute isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="Errors" ecore:opposite="Tests" ecore:reference="tcm:Error" name="Errors">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="SuperTest" ecore:opposite="SubTests" ecore:reference="tcm:Test" name="SuperTest" type="xsd:anyURI"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="UseCases" ecore:opposite="Tests" ecore:reference="tcm:UseCase" name="UseCases">
+        <xsd:attribute isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="UseCases" ecore:opposite="Tests" ecore:reference="tcm:UseCase" name="UseCases">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -914,7 +914,7 @@
         <xsd:attribute ecore:name="Tool" ecore:opposite="Tests" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="IsRobustness" ecore:unsettable="false" name="IsRobustness" type="ecore:EBoolean"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="KnownBugs" ecore:opposite="Tests" ecore:reference="tcm:KnownBug" name="KnownBugs">
+        <xsd:attribute isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="KnownBugs" ecore:opposite="Tests" ecore:reference="tcm:KnownBug" name="KnownBugs">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -935,7 +935,7 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="AnomalousOpConds" ecore:opposite="Tests" ecore:reference="tcm:AnomalousOpCond" name="AnomalousOpConds">
+        <xsd:attribute isUsed="notEmptyNotDeactivatedNotUnused" ecore:name="AnomalousOpConds" ecore:opposite="Tests" ecore:reference="tcm:AnomalousOpCond" name="AnomalousOpConds">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
@@ -946,7 +946,7 @@
         <xsd:attribute ecore:name="HasBoundaryTest" ecore:unsettable="false" name="HasBoundaryTest" type="ecore:EBoolean"/>
         <xsd:attribute ecore:name="HasEquivalenceTest" ecore:unsettable="false" name="HasEquivalenceTest" type="ecore:EBoolean"/>
         <xsd:attribute ecore:name="HasErrorGuessingTest" ecore:unsettable="false" name="HasErrorGuessingTest" type="ecore:EBoolean"/>
-        <xsd:attribute ecore:name="HasCodeCoverage" ecore:unsettable="false" name="HasCodeCoverage" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:CodeCoverageMetric"/>
+        <xsd:attribute ecore:name="HasCodeCoverage" ecore:unsettable="false" name="HasCodeCoverage" type="CodeCoverageMetric"/>
         <xsd:attribute default="1" ecore:name="NumberOfUnitTests" ecore:unsettable="false" name="NumberOfUnitTests" type="ecore:EInt"/>
         <xsd:attribute default="false" ecore:unsettable="false" name="multipleExecution" type="ecore:EBoolean"/>
       </xsd:extension>
@@ -969,9 +969,9 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="IDUnique  Variant_Consistency" ecore:implements="tcm:IDeactivatable" name="Identification">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="Identification" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="Identification" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Version" name="Version" type="ecore:EString"/>
         <xsd:attribute ecore:name="Release" name="Release" type="ecore:EString"/>
@@ -1007,9 +1007,9 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="IDUnique Reviewed QKit_KnownBugs Qkit_Reviews  Variant_Consistency" ecore:implements="tcm:IBug" name="KnownBug">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="KnownBug" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="KnownBug" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Fixed" ecore:unsettable="false" name="Fixed" type="ecore:EBoolean"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
@@ -1054,7 +1054,7 @@
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
-        <xsd:attribute default="FAIL" ecore:name="ObservableVerdict" ecore:unsettable="false" name="ObservableVerdict" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Verdict"/>
+        <xsd:attribute default="FAIL" ecore:name="ObservableVerdict" ecore:unsettable="false" name="ObservableVerdict" type="Verdict"/>
         <xsd:attribute ecore:name="ObservableMessagePattern" name="ObservableMessagePattern" type="ecore:EString"/>
         <xsd:attribute default=".*" ecore:name="ObservableTestNamePattern" ecore:unsettable="false" name="ObservableTestNamePattern" type="ecore:EString"/>
       </xsd:extension>
@@ -1062,14 +1062,14 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="IDUnique QKit_Process Qual_Documentation DescriptionOK QualProjectOK" ecore:implements="tcm:IDeactivatable" name="QualificationProject">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="QualificationRoles" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationRoles" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationRole"/>
-          <xsd:element ecore:name="QualificationSteps" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationSteps" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationStep"/>
-          <xsd:element ecore:name="QualificationArtifacts" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationArtifacts" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationArtifact"/>
+          <xsd:element ecore:name="QualificationRoles" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationRoles" type="QualificationRole"/>
+          <xsd:element ecore:name="QualificationSteps" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationSteps" type="QualificationStep"/>
+          <xsd:element ecore:name="QualificationArtifacts" ecore:opposite="QualificationProject" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="QualificationArtifacts" type="QualificationArtifact"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Tool" ecore:opposite="QualificationProjects" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
-        <xsd:attribute ecore:name="Method" ecore:unsettable="false" name="Method" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationMethod"/>
+        <xsd:attribute ecore:name="Method" ecore:unsettable="false" name="Method" type="QualificationMethod"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
         <xsd:attribute ecore:name="Variant" ecore:opposite="QualificationProjects" ecore:reference="tcm:Variant" name="Variant">
           <xsd:simpleType>
@@ -1083,7 +1083,7 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="IDUnique QKit_Process Qual_Documentation DescriptionOK QualRoleOK" ecore:implements="tcm:IDeactivatable" name="QualificationRole">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:attribute ecore:name="QualificationProject" ecore:opposite="QualificationRoles" ecore:reference="tcm:QualificationProject" name="QualificationProject" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="AssignedPerson" name="AssignedPerson" type="ecore:EString"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
@@ -1107,9 +1107,9 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="IDUnique QKit_Process Qual_Documentation DescriptionOK QualStepOK" ecore:implements="tcm:IDeactivatable" name="QualificationStep">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="SubQualificationSteps" ecore:opposite="SuperQualificationStep" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubQualificationSteps" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationStep"/>
+          <xsd:element ecore:name="SubQualificationSteps" ecore:opposite="SuperQualificationStep" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubQualificationSteps" type="QualificationStep"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="PlannedDate" name="PlannedDate" type="ecore:EString"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
@@ -1150,7 +1150,7 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="IDUnique QKit_Process Qual_Documentation DescriptionOK QualArtifactOK" ecore:implements="tcm:IDeactivatable" name="QualificationArtifact">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:attribute ecore:name="Variant" ecore:opposite="QualificationArtifacts" ecore:reference="tcm:Variant" name="Variant">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
@@ -1186,10 +1186,10 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="IDUnique" name="Method">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:attribute ecore:name="ToolSupported" ecore:unsettable="false" name="ToolSupported" type="ecore:EBoolean"/>
-        <xsd:attribute ecore:name="MandatoryFromLevel" ecore:unsettable="false" name="MandatoryFromLevel" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:RiskLevel"/>
-        <xsd:attribute ecore:name="MandatoryToLevel" ecore:unsettable="false" name="MandatoryToLevel" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:RiskLevel"/>
+        <xsd:attribute ecore:name="MandatoryFromLevel" ecore:unsettable="false" name="MandatoryFromLevel" type="RiskLevel"/>
+        <xsd:attribute ecore:name="MandatoryToLevel" ecore:unsettable="false" name="MandatoryToLevel" type="RiskLevel"/>
         <xsd:attribute ecore:name="AvailableFeatures" ecore:opposite="SupportedMethods" ecore:reference="tcm:Feature" name="AvailableFeatures">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
@@ -1201,7 +1201,7 @@
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="StandardMethods" ecore:opposite="Methods" ecore:reference="tcm:StandardMethods" name="StandardMethods" type="xsd:anyURI"/>
-        <xsd:attribute ecore:name="Kind" ecore:unsettable="false" name="Kind" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:MethodKind"/>
+        <xsd:attribute ecore:name="Kind" ecore:unsettable="false" name="Kind" type="MethodKind"/>
         <xsd:attribute ecore:name="Reference" name="Reference" type="ecore:EString"/>
       </xsd:extension>
     </xsd:complexContent>
@@ -1234,10 +1234,10 @@
   </xsd:simpleType>
   <xsd:complexType name="StandardMethods">
     <xsd:sequence>
-      <xsd:element ecore:name="Methods" ecore:opposite="StandardMethods" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Methods" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Method"/>
+      <xsd:element ecore:name="Methods" ecore:opposite="StandardMethods" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Methods" type="Method"/>
     </xsd:sequence>
     <xsd:attribute ecore:name="ToolChain" ecore:opposite="StandardMethods" ecore:reference="tcm:ToolChain" name="ToolChain" type="xsd:anyURI"/>
-    <xsd:attribute ecore:name="SafetyStandard" ecore:unsettable="false" name="SafetyStandard" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:SafetyStandard"/>
+    <xsd:attribute ecore:name="SafetyStandard" ecore:unsettable="false" name="SafetyStandard" type="SafetyStandard"/>
   </xsd:complexType>
   <xsd:simpleType name="ConfidenceLevel">
     <xsd:restriction base="xsd:string">
@@ -1256,9 +1256,9 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="IDUnique" name="Review">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:attribute ecore:name="Date" name="Date" type="ecore:EString"/>
-        <xsd:attribute ecore:name="Result" ecore:unsettable="false" name="Result" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ReviewResult"/>
+        <xsd:attribute ecore:name="Result" ecore:unsettable="false" name="Result" type="ReviewResult"/>
         <xsd:attribute ecore:name="Reviewer" name="Reviewer" type="ecore:EString"/>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
         <xsd:attribute ecore:name="Test" ecore:opposite="Reviews" ecore:reference="tcm:Test" name="Test" type="xsd:anyURI"/>
@@ -1287,7 +1287,7 @@
   </xsd:simpleType>
   <xsd:complexType abstract="true" ecore:implements="tcm:IImpactable" ecore:interface="true" name="IBug">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IToolChainElement"/>
+      <xsd:extension base="IToolChainElement"/>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType abstract="true" ecore:interface="true" name="IDerivable">
@@ -1305,22 +1305,22 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="DescriptionOK Implemented IDUnique Variant_Consistency Qual_TestResults Qual_TestAnalysis TestsLinkedCompletly" name="TestRun">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="TestResults" ecore:opposite="TestRun" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TestResults" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:TestResult"/>
+          <xsd:element ecore:name="TestResults" ecore:opposite="TestRun" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="TestResults" type="TestResult"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="StartDate" name="StartDate" type="ecore:EString"/>
         <xsd:attribute ecore:name="EndDate" name="EndDate" type="ecore:EString"/>
         <xsd:attribute ecore:name="Platform" name="Platform" type="ecore:EString"/>
         <xsd:attribute ecore:name="TestRunDirectory" name="TestRunDirectory" type="ecore:EString"/>
-        <xsd:attribute default="NONE" ecore:name="ExecutionResult" ecore:unsettable="false" name="ExecutionResult" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Verdict"/>
+        <xsd:attribute default="NONE" ecore:name="ExecutionResult" ecore:unsettable="false" name="ExecutionResult" type="Verdict"/>
         <xsd:attribute ecore:name="Tests" ecore:opposite="TestRuns" ecore:reference="tcm:Test" name="Tests">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
           </xsd:simpleType>
         </xsd:attribute>
         <xsd:attribute ecore:name="Tool" ecore:opposite="TestRuns" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
-        <xsd:attribute ecore:name="Verdict" ecore:unsettable="false" name="Verdict" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Verdict"/>
+        <xsd:attribute ecore:name="Verdict" ecore:unsettable="false" name="Verdict" type="Verdict"/>
         <xsd:attribute ecore:name="Identification" ecore:opposite="TestRuns" ecore:reference="tcm:Identification" name="Identification" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="Variants" ecore:opposite="TestRuns" ecore:reference="tcm:Variant" name="Variants">
           <xsd:simpleType>
@@ -1348,13 +1348,13 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="DescriptionOK Implemented IDUnique Qual_TestAnalysis" ecore:implements="tcm:IDeactivatable" name="TestResult">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="SubTestResults" ecore:opposite="SuperTestResult" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubTestResults" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:TestResult"/>
+          <xsd:element ecore:name="SubTestResults" ecore:opposite="SuperTestResult" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="SubTestResults" type="TestResult"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Message" name="Message" type="ecore:EString"/>
-        <xsd:attribute default="NONE" ecore:name="ExecutionResult" ecore:unsettable="false" name="ExecutionResult" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Verdict"/>
-        <xsd:attribute ecore:name="Verdict" ecore:unsettable="false" name="Verdict" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Verdict"/>
+        <xsd:attribute default="NONE" ecore:name="ExecutionResult" ecore:unsettable="false" name="ExecutionResult" type="Verdict"/>
+        <xsd:attribute ecore:name="Verdict" ecore:unsettable="false" name="Verdict" type="Verdict"/>
         <xsd:attribute ecore:name="TestRun" ecore:opposite="TestResults" ecore:reference="tcm:TestRun" name="TestRun" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="Test" ecore:opposite="TestResults" ecore:reference="tcm:Test" name="Test" type="xsd:anyURI"/>
         <xsd:attribute ecore:name="SuperTestResult" ecore:opposite="SubTestResults" ecore:reference="tcm:TestResult" name="SuperTestResult" type="xsd:anyURI"/>
@@ -1380,11 +1380,11 @@
   </xsd:complexType>
   <xsd:complexType name="Library">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Tool">
+      <xsd:extension base="Tool">
         <xsd:sequence>
-          <xsd:element ecore:name="LibraryQualifications" ecore:opposite="Library" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="LibraryQualifications" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:LibraryQualification"/>
+          <xsd:element ecore:name="LibraryQualifications" ecore:opposite="Library" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="LibraryQualifications" type="LibraryQualification"/>
         </xsd:sequence>
-        <xsd:attribute ecore:name="Classification" ecore:unsettable="false" name="Classification" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:LibraryClassification"/>
+        <xsd:attribute ecore:name="Classification" ecore:unsettable="false" name="Classification" type="LibraryClassification"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -1408,9 +1408,9 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="IDUnique Reviewed Qkit_Reviews  Variant_Consistency" ecore:implements="tcm:IBug" name="AnomalousOpCond">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:opposite="AnomalousOpCond" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:opposite="AnomalousOpCond" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="InternalReference" name="InternalReference" type="ecore:EString"/>
         <xsd:attribute ecore:name="Tool" ecore:opposite="AnomalousOpConds" ecore:reference="tcm:Tool" name="Tool" type="xsd:anyURI"/>
@@ -1458,8 +1458,8 @@
   </xsd:simpleType>
   <xsd:complexType name="NOTVariant">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Variant">
-        <xsd:attribute de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:isUsed="notEmpty" ecore:name="Variant" ecore:reference="tcm:Variant" name="Variant" type="xsd:anyURI" use="required"/>
+      <xsd:extension base="Variant">
+        <xsd:attribute isUsed="notEmpty" ecore:name="Variant" ecore:reference="tcm:Variant" name="Variant" type="xsd:anyURI" use="required"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
@@ -1478,15 +1478,15 @@
   </xsd:simpleType>
   <xsd:complexType ecore:constraints="DescriptionOK NameUnique Deactivated IDUnique" ecore:implements="tcm:IDeactivatable" name="Parameter">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="EnumValues" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="EnumValues" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:EnumValue"/>
-          <xsd:element ecore:name="Reviews" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="EnumValues" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="EnumValues" type="EnumValue"/>
+          <xsd:element ecore:name="Reviews" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="Value" name="Value" type="ecore:EString"/>
         <xsd:attribute ecore:name="DefaultValue" name="DefaultValue" type="ecore:EString"/>
         <xsd:attribute ecore:name="OrderNumber" ecore:unsettable="false" name="OrderNumber" type="ecore:EInt"/>
-        <xsd:attribute ecore:name="Type" ecore:unsettable="false" name="Type" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:ParameterType"/>
+        <xsd:attribute ecore:name="Type" ecore:unsettable="false" name="Type" type="ParameterType"/>
         <xsd:attribute ecore:name="Variant" ecore:opposite="Parameters" ecore:reference="tcm:Variant" name="Variant">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
@@ -1504,9 +1504,9 @@
   </xsd:complexType>
   <xsd:complexType ecore:constraints="DescriptionOK NameUnique Deactivated IDUnique" ecore:implements="tcm:IDeactivatable" name="EnumValue">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:sequence>
-          <xsd:element ecore:name="Reviews" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Review"/>
+          <xsd:element ecore:name="Reviews" ecore:resolveProxies="true" maxOccurs="unbounded" minOccurs="0" name="Reviews" type="Review"/>
         </xsd:sequence>
         <xsd:attribute ecore:name="OrderNumber" ecore:unsettable="false" name="OrderNumber" type="ecore:EInt"/>
         <xsd:attribute ecore:name="Variant" ecore:opposite="EnumValues" ecore:reference="tcm:Variant" name="Variant">
@@ -1519,15 +1519,15 @@
   </xsd:complexType>
   <xsd:complexType name="ToolQualification">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Qualification">
-        <xsd:attribute ecore:name="ToolQualificationMethod" ecore:unsettable="false" name="ToolQualificationMethod" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:QualificationMethod"/>
+      <xsd:extension base="Qualification">
+        <xsd:attribute ecore:name="ToolQualificationMethod" ecore:unsettable="false" name="ToolQualificationMethod" type="QualificationMethod"/>
       </xsd:extension>
     </xsd:complexContent>
   </xsd:complexType>
   <xsd:complexType name="LibraryQualification">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Qualification">
-        <xsd:attribute ecore:name="LibraryQualificationMethod" ecore:unsettable="false" name="LibraryQualificationMethod" type="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:LibraryQualificationMethod"/>
+      <xsd:extension base="Qualification">
+        <xsd:attribute ecore:name="LibraryQualificationMethod" ecore:unsettable="false" name="LibraryQualificationMethod" type="LibraryQualificationMethod"/>
         <xsd:attribute ecore:name="Library" ecore:opposite="LibraryQualifications" ecore:reference="tcm:Library" name="Library" type="xsd:anyURI"/>
       </xsd:extension>
     </xsd:complexContent>
@@ -1565,7 +1565,7 @@
   </xsd:simpleType>
   <xsd:complexType ecore:implements="tcm:IDeactivatable" name="ProgressTrackingState">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:IIdentifiable">
+      <xsd:extension base="IIdentifiable">
         <xsd:attribute ecore:name="Order" ecore:unsettable="false" name="Order" type="ecore:EInt" use="required"/>
         <xsd:attribute ecore:name="AssociatedFeatures" ecore:opposite="State" ecore:reference="tcm:Feature" name="AssociatedFeatures">
           <xsd:simpleType>
@@ -1578,7 +1578,7 @@
   </xsd:complexType>
   <xsd:complexType name="CommandLineParameter">
     <xsd:complexContent>
-      <xsd:extension base="de.validas.toolchainanalyzer.metamodel.de.validas.iso26262.toolchainanalyzer:Parameter">
+      <xsd:extension base="Parameter">
         <xsd:attribute ecore:name="RelevantFeatures" ecore:opposite="RelevantCLParameters" ecore:reference="tcm:Feature" name="RelevantFeatures">
           <xsd:simpleType>
             <xsd:list itemType="xsd:anyURI"/>
