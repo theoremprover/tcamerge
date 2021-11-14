@@ -25,20 +25,26 @@ main :: IO ()
 main = do
 	xml1 <- readXML "newtool1.tca"
 	xml2 <- readXML "newtool2.tca"
-	mapM putStrLn $ mergeXML xml1 xml2
-	
---	writeXML "testout.xml" 
+	writeXML "merged.tca" $ merge xml1 xml2
 
+
+---- Same ----------------------	
 -- Determines if something should be considered as the same element when merging
+
 class Same a where
 	same :: a -> a -> Bool
-
-class (Same a) => Mergable a where
-	merge :: a -> a -> a
 
 instance Same Element where
 	same (Element name1 attribs1 contents1 line1) (Element name2 attribs2 contents2 _) =
 		name1==name2 && idAttrib attribs1 == idAttrib attribs2
+
+instance Same Attrib where
+	same (Attr qname1 _) (Attr qname2 _) = qname1==qname2
+
+---- Mergable -------------------
+
+class (Same a) => Mergable a where
+	merge :: a -> a -> [a]
 
 instance Mergable Element where
 	merge elem1@(Element name1 attribs1 contents1 line1) elem2@(Element name2 attribs2 contents2 _) | elem1 `same` elem2 =
@@ -48,9 +54,6 @@ instance Mergable Element where
 				True  -> 
 				False -> 
 
-instance Same Attrib where
-	same (Attr qname1 _) (Attr qname2) = qname1==qname2
-
 instance 
 instance (Mergable a) => Mergable [a] where
 	merge a
@@ -58,7 +61,3 @@ instance (Mergable a) => Mergable [a] where
 idAttrib attribs = case filter ((=="id").attrKey) attribs of
 	[Attr key val] -> Just val
 	_              -> Nothing
-
-mergeList :: (Eq a,Same a) => [a] -> [a] -> [a]
-mergeList (a:as) (b:bs) | a `same` b = a : mergeList as bs
-mergeList (
