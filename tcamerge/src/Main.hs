@@ -1,6 +1,8 @@
 {-# OPTIONS_GHC -fno-warn-tabs #-}
 {-# LANGUAGE ScopedTypeVariables,FlexibleInstances,UnicodeSyntax #-}
 
+-- https://hackage.haskell.org/package/xml-1.3.14/docs/Text-XML-Light-Types.html#t:CData
+
 module Main where
 
 import Text.XML.Light
