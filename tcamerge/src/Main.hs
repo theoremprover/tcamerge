@@ -82,7 +82,7 @@ deletedQName  = QName "_DELETED_"  Nothing Nothing
 instance Diffable Element where
 	diff elem1@(Element name1 attribs1 contents1 line1) elem2@(Element name2 attribs2 contents2 _)
 		| elem1 `same` elem2 = [ Element name1 (diffList attribs1 attribs2) (diffList contents1 contents2) line1 ]
-	diff elem1 elem2 = []
+	diff elem1 elem2 = [ mkDeleted elem1, mkInserted elem2 ]
 	mkInserted elem = Element insertedQName [] [Elem elem] Nothing
 	mkDeleted elem  = Element deletedQName  [] [Elem elem] Nothing
 	isInserted = (==insertedQName).elName
@@ -90,6 +90,9 @@ instance Diffable Element where
 
 instance Diffable Content where
 	diff (Elem elem1) (Elem elem2) = map Elem $ diff elem1 elem2
-	diff (Text (CData CDataText text1 _)) (Text (CData CDataText text2 _)) = map () $ diff text1 text2
+	diff (Text (CData CDataText text1 _)) (Text (CData CDataText text2 _)) = diffText text1 text2
+
+diffText :: String -> String -> String
+diffText 
 
 instance Diffable Attr where
