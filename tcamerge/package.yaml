@@ -1,23 +1,17 @@
 name:                tcamerge
 version:             0.1.0.0
-#synopsis:
-#description:
 homepage:            https://github.com/theoremprover/tcamerge#readme
 license:             BSD3
 author:              Robert Reitmeier
 maintainer:          haskell@thinking-machines.net
 copyright:           2021 Robert Reitmeier
-#category:
-
-#default-extensions:
 
 dependencies:
   - base >= 4.7 && < 5
-  - xml
 
 executables:
   tcamerge-exe:
-    source-dirs:      src
+    source-dirs:      app
     main:             Main.hs
     ghc-options:
     - -threaded

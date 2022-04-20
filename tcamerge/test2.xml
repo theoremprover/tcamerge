@@ -1,6 +1,0 @@
-<root>
-<toolchain>
-<tool xmi:id="abc" name="tool1"><usecase name="uc1"></usecase></tool>
-<tool xmi:id="def" name="tool2"></tool>
-</toolchain>
-</root>
